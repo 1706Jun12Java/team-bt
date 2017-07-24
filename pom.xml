@@ -25,7 +25,6 @@
     </plugins>
   </build>
   
-  <!-- 
   	<dependencies>
 		<dependency>
             <groupId>com.oracle.ojdbc</groupId>
@@ -43,5 +42,4 @@
 			<version>4.3.11.Final</version>
 		</dependency>
 	</dependencies>
-	 -->
 </project>
