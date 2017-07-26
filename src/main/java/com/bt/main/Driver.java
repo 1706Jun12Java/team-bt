@@ -31,12 +31,6 @@ public class Driver {
     	
     	System.out.println(testing1);
     	
-    	String testing3 = System.getenv("$(testdatabase)");
-    	
-    	System.out.println(testing3);
-    	String testing4 = System.getenv("${testdatabase}");
-    	
-    	System.out.println(testing4);
     }
     static void init() {
 
