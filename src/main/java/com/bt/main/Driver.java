@@ -23,13 +23,13 @@ public class Driver {
     	
     	System.out.println(db2);
     	
-    	String testing1 = System.getenv("$(env.DATABASE)");
-    	
-    	System.out.println(testing1);
-    	
-    	String testing2 = System.getenv("$(env.testdatabase)");
-    	
-    	System.out.println(testing1);
+//    	String testing1 = System.getenv("$(env.DATABASE)");
+//    	
+//    	System.out.println(testing1);
+//    	
+//    	String testing2 = System.getenv("$(env.testdatabase)");
+//    	
+//    	System.out.println(testing1);
     	
     }
     static void init() {
