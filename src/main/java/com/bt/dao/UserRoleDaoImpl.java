@@ -3,6 +3,7 @@ package com.bt.dao;
 import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,26 +53,42 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
     @Override
     public int saveUserRole(UserRole u) {
-        // TODO Auto-generated method stub
-        return 0;
+    	Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		int result = (int) s.save(u);
+		tx.commit();
+		s.close();
+		return result;
     }
 
     @Override
     public void persistUserRole(UserRole u) {
-        // TODO Auto-generated method stub
-
+    	Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.persist(u);
+		tx.commit();
+		s.close();
     }
 
     @Override
-    public UserRole updateUserRole(UserRole u, String newName) {
-        // TODO Auto-generated method stub
-        return null;
+    public void updateUserRole(UserRole u, String userRole) {
+    	Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+			u.setUserRole(userRole);
+			s.saveOrUpdate(u);
+		tx.commit();
+		s.close();
     }
 
     @Override
-    public UserRole mergeUserRole(UserRole u, String newName) {
-        // TODO Auto-generated method stub
-        return null;
+    public UserRole mergeUserRole(UserRole u, String userRole) {
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		u.setUserRole(userRole);
+		UserRole u2 = (UserRole) s.merge(u);
+		tx.commit();
+		s.close();
+		return u2;
     }
 
 }
