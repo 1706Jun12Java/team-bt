@@ -54,7 +54,7 @@ public class UserRole implements Serializable {
 
     @OneToMany(mappedBy="role",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private List<User> members;
-    public List<User> getMembers() {
+    public List<User> getUsersOfThisType() {
         return members;
     }
 }

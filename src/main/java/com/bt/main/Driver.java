@@ -51,7 +51,7 @@ public class Driver {
 		for(UserRole ur: urDao.getUserRoles()){
 			System.out.println("USERROLE");
 			System.out.println(ur.toString());
-			for(User x : ur.getMembers()){
+			for(User x : ur.getUsersOfThisType()){
 				System.out.println("USER");
 				System.out.println(x.toString());
 			}

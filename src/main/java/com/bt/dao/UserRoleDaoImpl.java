@@ -13,6 +13,11 @@ public class UserRoleDaoImpl implements UserRoleDao {
         // TODO Auto-generated constructor stub
     }
 
+    /*
+     * (non-Javadoc)
+     * @see com.bt.dao.UserRoleDao#getUserRoles()
+     * this function returns all UserRole entries in the database
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<UserRole> getUserRoles() {
@@ -22,10 +27,27 @@ public class UserRoleDaoImpl implements UserRoleDao {
         return userRoles;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see com.bt.dao.UserRoleDao#getUserRoleById(int)
+     * Gets a UserRole by id
+     * If that id does not exist this function returns null
+     */
     @Override
     public UserRole getUserRoleById(int id) {
-        // TODO Auto-generated method stub
-        return null;
+    	Session session = null;
+        UserRole ur = null;
+        try {
+            session = HibernateUtil.getSession();
+            ur =  (UserRole)session.get(UserRole.class,id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return ur;
     }
 
     @Override
