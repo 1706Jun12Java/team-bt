@@ -2,18 +2,10 @@
 public class Test {
 	public static void main(String[] args) {
 
-    	String db = System.getenv("$(env.DB_URL)");
-    	
-    	System.out.println(db);
-    	String db2 = System.getProperty("${env.DB_URL}");
-    	
-    	System.out.println(db2);
-    	String db3 = System.getenv("env.DB_URL");
-    	
-    	System.out.println(db3);
-    	String db4 = System.getProperty("$env.DB_URL");
-    	
-    	System.out.println(db4);
+		Map<String, String> env = System.getenv();
+		for (String envName : env.keySet()) {
+		    System.out.format("%s=%s%n", envName, env.get(envName));
+		}
     	
 //    	String testing1 = System.getenv("$(env.DATABASE)");
 //    	
