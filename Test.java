@@ -14,7 +14,11 @@ public class Test {
 
 		System.out.println(env.get("DB_PASSWORD"));
 		
-		System.out.println(env.get("${DB_PASSWORD}"));
+		
+		System.out.println(System.getenv("DB_PASSWORD"));
+		System.out.println(System.getenv("DB_USERNAME"));
+		System.out.println(System.getenv("DB_URL"));
+
 
 //    	String testing1 = System.getenv("$(env.DATABASE)");
 //    	
