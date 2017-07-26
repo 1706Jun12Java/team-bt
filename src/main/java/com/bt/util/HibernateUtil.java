@@ -1,4 +1,4 @@
-package com.bt.util;
+	package com.bt.util;
 
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

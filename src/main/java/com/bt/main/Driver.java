@@ -12,8 +12,31 @@ public class Driver {
 
     public static void main(String[] args){
 //        init();
-        testURDao();
+//        testURDao();
+    	
+    	System.out.println("Test");
 
+    	String db = System.getenv("$(env.DB_URL)");
+    	
+    	System.out.println(db);
+    	String db2 = System.getProperty("${env.DB_URL}");
+    	
+    	System.out.println(db2);
+    	
+    	String testing1 = System.getenv("$(env.DATABASE)");
+    	
+    	System.out.println(testing1);
+    	
+    	String testing2 = System.getenv("$(env.testdatabase)");
+    	
+    	System.out.println(testing1);
+    	
+    	String testing3 = System.getenv("$(testdatabase)");
+    	
+    	System.out.println(testing3);
+    	String testing4 = System.getenv("${testdatabase}");
+    	
+    	System.out.println(testing4);
     }
     static void init() {
 
@@ -28,10 +51,10 @@ public class Driver {
         User u2 = new User("User","password","Mary","Sue","User@Somewhere.com",ur2);
 
 
-        System.out.println(s.save(ur1));
-        System.out.println(s.save(ur2));
-        System.out.println(s.save(u1));
-        System.out.println(s.save(u2));
+        s.persist(ur1);
+        s.persist(ur2);
+        s.persist(u1);
+        s.persist(u2);
 
         tx.commit();
         s.close();
