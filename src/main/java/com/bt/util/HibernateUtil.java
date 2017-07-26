@@ -8,9 +8,14 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory(String filename) {
-        Configuration c = new Configuration().configure(filename);
-        ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(
-                c.getProperties()).build();
+    	
+    	
+        Configuration c = new Configuration()
+//        		.setProperty("hibernate.connection.username", "ear")
+//        		.setProperty("hibernate.connection.password", "ear")
+//        		.setProperty("hibernate.connection.url", "ear")
+        		.configure(filename);
+        ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
         return c.buildSessionFactory(sr);
     }
 
