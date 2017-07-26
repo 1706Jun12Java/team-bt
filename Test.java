@@ -1,9 +1,6 @@
 
 public class Test {
 	public static void main(String[] args) {
-		System.out.println("test");
-		
-    	System.out.println("Test");
 
     	String db = System.getenv("$(env.DB_URL)");
     	
@@ -11,6 +8,12 @@ public class Test {
     	String db2 = System.getProperty("${env.DB_URL}");
     	
     	System.out.println(db2);
+    	String db3 = System.getenv("env.DB_URL");
+    	
+    	System.out.println(db3);
+    	String db4 = System.getProperty("$env.DB_URL");
+    	
+    	System.out.println(db4);
     	
 //    	String testing1 = System.getenv("$(env.DATABASE)");
 //    	
