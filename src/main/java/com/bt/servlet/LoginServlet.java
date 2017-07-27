@@ -1,7 +1,14 @@
 package com.bt.servlet;
 
+import java.applet.Applet;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +45,23 @@ public class LoginServlet extends HttpServlet{
 //		for(UserRole ur: urDao.getUserRoles()){
 //			pw.println(ur.toString());
 //		}
+		Properties prop = new Properties();
+		InputStream input = null;
+		try {
+			input = new FileInputStream("env.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			pw.println(prop.getProperty("dbUrl"));
+			pw.println(prop.getProperty("dbUsername"));
+			pw.println(prop.getProperty("dbPassword"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		pw.println(System.getProperty("dbUrl"));
 		pw.println(System.getenv("dbUrl"));
