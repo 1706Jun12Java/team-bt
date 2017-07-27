@@ -39,6 +39,8 @@ public class LoginServlet extends HttpServlet{
 			pw.println(ur.toString());
 		}
 		
+		pw.println(System.getProperty("dbUrl"));
+		
 		
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
