@@ -45,6 +45,11 @@
               <configuration>
                   <source>1.8</source>
                   <target>1.8</target>
+                  <systemPropertyVariables>
+                        <dbUrl>${dbUrl}</dbUrl>
+                      <dbPassword>${dbPassword}</dbPassword>]
+                      <dbUsername>${dbUsername}</dbUsername>
+                  </systemPropertyVariables>
               </configuration>
           </plugin>
       </plugins>
