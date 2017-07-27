@@ -40,8 +40,7 @@ public class LoginServlet extends HttpServlet{
 //		}
 		
 		pw.println(System.getProperty("dbUrl"));
-		
-		
+		pw.println(System.getenv("dbUrl"));
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("bye");
