@@ -46,7 +46,7 @@
                   <source>1.8</source>
                   <target>1.8</target>
                    <systemPropertyVariables>
-			            <dbUrl>propertyValue</dbUrl>
+			            <sudoku>propertyValue</sudoku>
 			            <buildDirectory>${project.build.directory}</buildDirectory>
 			       </systemPropertyVariables>
               </configuration>
