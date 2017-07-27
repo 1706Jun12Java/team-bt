@@ -49,15 +49,19 @@
               </configuration>
           </plugin>
           <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-surefire-plugin</artifactId>
-	        <version>2.20</version>
+	        <groupId>org.mortbay.jetty</groupId>
+	        <artifactId>maven-jetty-plugin</artifactId>
 	        <configuration>
-	          <systemPropertyVariables>
-	            <sudoku>${dbUrl}</sudoku>
-	            <sudoku1>dbUrl</sudoku1>
-	            <buildDirectory>${project.build.directory}</buildDirectory>
-	          </systemPropertyVariables>
+	         <systemProperties>
+	            <systemProperty>
+	              <name>sudoku</name>
+	              <value>${dbUrl}</value>
+	            </systemProperty>
+	            <systemProperty>
+	              <name>sudoku1</name>
+	              <value>dbUrl</value>
+	            </systemProperty>
+	         </systemProperties>
 	        </configuration>
 	      </plugin>
       </plugins>
