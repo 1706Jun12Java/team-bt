@@ -50,6 +50,14 @@ public class LoginServlet extends HttpServlet{
         for (String envName : env.keySet()) {
         	pw.println(envName + ": " + env.get(envName));
         }
+        
+        Properties p = System.getProperties();
+        Enumeration keys = p.keys();
+        while (keys.hasMoreElements()) {
+            String key = (String)keys.nextElement();
+            String value = (String)p.get(key);
+            pw.println(key + ": " + value);
+        }
 		pw.println(System.getProperty("dbUrl"));
 		pw.println(System.getenv("dbUrl"));
 		
