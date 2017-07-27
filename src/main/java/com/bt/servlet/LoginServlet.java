@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet{
 		Properties prop = new Properties();
 		InputStream input = null;
 		try {
-			input = new FileInputStream("env.properties");
+			input = new FileInputStream("/env.properties");
 
 			// load a properties file
 			prop.load(input);
@@ -58,9 +58,9 @@ public class LoginServlet extends HttpServlet{
 			pw.println(prop.getProperty("dbUsername"));
 			pw.println(prop.getProperty("dbPassword"));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			pw.println(System.getProperty("file not found"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			pw.println(System.getProperty("io exception"));
 		}
 		
 		pw.println(System.getProperty("dbUrl"));
