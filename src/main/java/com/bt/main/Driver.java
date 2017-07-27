@@ -11,10 +11,11 @@ import org.hibernate.Transaction;
 public class Driver {
 
 	public static void main(String[] args){
-		System.out.println("begining of test");
-		//init();
-		testURDao();
-		System.out.println("end of test");
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		
+		tx.commit();
+		s.close();
 	}
 	static void init() {
 		Session s = HibernateUtil.getSession();
