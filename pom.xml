@@ -45,6 +45,10 @@
               <configuration>
                   <source>1.8</source>
                   <target>1.8</target>
+                   <systemPropertyVariables>
+			            <dbUrl>propertyValue</dbUrl>
+			            <buildDirectory>${project.build.directory}</buildDirectory>
+			       </systemPropertyVariables>
               </configuration>
           </plugin>
       </plugins>

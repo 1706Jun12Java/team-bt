@@ -45,26 +45,11 @@ public class LoginServlet extends HttpServlet{
 //		for(UserRole ur: urDao.getUserRoles()){
 //			pw.println(ur.toString());
 //		}
-		Properties prop = new Properties();
-		InputStream input = null;
-		try {
-			input = new FileInputStream("/env.properties");
-
-			// load a properties file
-			prop.load(input);
-
-			// get the property value and print it out
-			pw.println(prop.getProperty("dbUrl"));
-			pw.println(prop.getProperty("dbUsername"));
-			pw.println(prop.getProperty("dbPassword"));
-		} catch (FileNotFoundException e) {
-			pw.println(System.getProperty("file not found"));
-		} catch (IOException e) {
-			pw.println(System.getProperty("io exception"));
-		}
 		
 		pw.println(System.getProperty("dbUrl"));
 		pw.println(System.getenv("dbUrl"));
+		
+		pw.println(System.getProperty("sudoku"));
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("bye");
