@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
@@ -45,7 +46,10 @@ public class LoginServlet extends HttpServlet{
 //		for(UserRole ur: urDao.getUserRoles()){
 //			pw.println(ur.toString());
 //		}
-		
+		Map<String, String> env = System.getenv();
+        for (String envName : env.keySet()) {
+        	pw.println(envName + ": " + env.get(envName));
+        }
 		pw.println(System.getProperty("dbUrl"));
 		pw.println(System.getenv("dbUrl"));
 		
