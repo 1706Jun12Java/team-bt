@@ -17,11 +17,19 @@ public class HibernateUtil {
     	
     	
     	
-		Configuration c = new Configuration().setProperty("hibernate.connection.url", System.getProperty("dbUrl"))
-            		 .setProperty("hibernate.connection.username", System.getProperty("dbUsername"))
-            		 .setProperty("hibernate.connection.password", System.getProperty("dbPassword"))
-            		 .configure(filename);  
+		Configuration c = new Configuration();
 		
+		if (System.getenv("dbUrl") != null){
+			c.setProperty("hibernate.connection.url", System.getenv("dbUrl"))
+			 .setProperty("hibernate.connection.username", System.getenv("dbUsername"))
+			 .setProperty("hibernate.connection.password", System.getenv("dbPassword"));
+		} else {
+			c.setProperty("hibernate.connection.url", System.getProperty("dbUrl"))
+			 .setProperty("hibernate.connection.username", System.getProperty("dbUsername"))
+			 .setProperty("hibernate.connection.password", System.getProperty("dbPassword"));
+		}
+ 
+		c.configure(filename); 
    		ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
         return c.buildSessionFactory(sr);
     }
