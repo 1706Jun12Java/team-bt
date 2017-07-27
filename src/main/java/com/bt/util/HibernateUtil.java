@@ -14,17 +14,12 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory(String filename) {
-		Configuration c = new Configuration();
-
-		
-    	if (System.getenv("DB_URL") != null){
-            		c.setProperty("hibernate.connection.url", System.getenv("DB_URL"))
+		Configuration c = new Configuration().setProperty("hibernate.connection.url", System.getenv("DB_URL"))
             		 .setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"))
-            		 .setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));           
-    	}
-    	
-		c.configure(filename);
-		ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
+            		 .setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"))
+            		 .configure(filename);  
+		
+   		ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
         return c.buildSessionFactory(sr);
     }
 
