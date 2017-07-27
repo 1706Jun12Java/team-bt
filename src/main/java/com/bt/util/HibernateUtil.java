@@ -1,9 +1,8 @@
 package com.bt.util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -15,12 +14,35 @@ public class HibernateUtil {
 
     private static SessionFactory sessionFactory(String filename) {
     	
-    	
-    	
-		Configuration c = new Configuration().setProperty("hibernate.connection.url", System.getProperty("dbUrl"))
-			 .setProperty("hibernate.connection.username", System.getProperty("dbUsername"))
-			 .setProperty("hibernate.connection.password", System.getProperty("dbPassword"))
+		Configuration c = new Configuration();
+		
+		ClassLoader classLoader = null;
+		InputStream input = null;
+		try {
+
+			classLoader = Thread.currentThread().getContextClassLoader();
+			input = classLoader.getResourceAsStream("env.properties");
+			Properties prop = new Properties();
+			prop.load(input);
+
+			// load a properties file
+			prop.load(input);
+			c.setProperty("hibernate.connection.url", prop.getProperty("dbUrl"))
+			 .setProperty("hibernate.connection.username", prop.getProperty("dbUsername"))
+			 .setProperty("hibernate.connection.password", prop.getProperty("dbPassword"))
 		     .configure(filename); 
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
  
    		ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
         return c.buildSessionFactory(sr);
