@@ -50,6 +50,8 @@ public class LoginServlet extends HttpServlet{
 		pw.println(System.getenv("dbUrl"));
 		
 		pw.println(System.getProperty("sudoku"));
+		pw.println(System.getProperty("sudoku1"));
+
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("bye");

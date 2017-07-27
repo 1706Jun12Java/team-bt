@@ -54,7 +54,8 @@
 	        <version>2.20</version>
 	        <configuration>
 	          <systemPropertyVariables>
-	            <suduoku>${dbUrl}</suduoku>
+	            <sudoku>${dbUrl}</sudoku>
+	            <sudoku1>dbUrl</sudoku1>
 	            <buildDirectory>${project.build.directory}</buildDirectory>
 	          </systemPropertyVariables>
 	        </configuration>
