@@ -39,3 +39,4 @@ hs_err_pid*
 /RemoteSystemsTempFiles/
 /External Files/
 /src/main/resources/config.txt
+/src/main/resources/env.properties

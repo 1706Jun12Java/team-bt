@@ -46,24 +46,52 @@ public class LoginServlet extends HttpServlet{
 //		for(UserRole ur: urDao.getUserRoles()){
 //			pw.println(ur.toString());
 //		}
-		Map<String, String> env = System.getenv();
-        for (String envName : env.keySet()) {
-        	pw.println(envName + ": " + env.get(envName));
-        }
-        
-        Properties p = System.getProperties();
-        Enumeration keys = p.keys();
-        while (keys.hasMoreElements()) {
-            String key = (String)keys.nextElement();
-            String value = (String)p.get(key);
-            pw.println(key + ": " + value);
-        }
+//		Map<String, String> env = System.getenv();
+//        for (String envName : env.keySet()) {
+//        	pw.println(envName + ": " + env.get(envName));
+//        }
+//        
+//        Properties p = System.getProperties();
+//        Enumeration keys = p.keys();
+//        while (keys.hasMoreElements()) {
+//            String key = (String)keys.nextElement();
+//            String value = (String)p.get(key);
+//            pw.println(key + ": " + value);
+//        }
 		pw.println(System.getProperty("dbUrl"));
 		pw.println(System.getenv("dbUrl"));
 		
 		pw.println(System.getProperty("sudoku"));
 		pw.println(System.getProperty("sudoku1"));
 
+		ClassLoader classLoader = null;
+		InputStream input = null;
+		try {
+
+			classLoader = Thread.currentThread().getContextClassLoader();
+			input = classLoader.getResourceAsStream("env.properties");
+			Properties prop = new Properties();
+			prop.load(input);
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			pw.println(prop.getProperty("dbUrl"));
+			pw.println(prop.getProperty("dbUsername"));
+			pw.println(prop.getProperty("dbPassword"));
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("bye");
