@@ -36,6 +36,7 @@
 	    <scope>provided</scope>
 	</dependency>
   </dependencies>
+
   <build>
       <plugins>
           <plugin>
@@ -43,12 +44,21 @@
               <artifactId>maven-compiler-plugin</artifactId>
               <version>3.5.1</version>
               <configuration>
-                  <systemPropertyVariables>
-		            <sudoku>${dbUrl}</sudoku>
-		            <buildDirectory>${project.build.directory}</buildDirectory>
-		          </systemPropertyVariables>
+                  <source>1.8</source>
+                  <target>1.8</target>
               </configuration>
           </plugin>
+          <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <version>2.20</version>
+	        <configuration>
+	          <systemPropertyVariables>
+	            <suduoku>${dbUrl}</suduoku>
+	            <buildDirectory>${project.build.directory}</buildDirectory>
+	          </systemPropertyVariables>
+	        </configuration>
+	      </plugin>
       </plugins>
     <finalName>team-bt</finalName>
   </build>
