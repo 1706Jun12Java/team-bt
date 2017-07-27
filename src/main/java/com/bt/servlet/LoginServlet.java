@@ -32,12 +32,12 @@ public class LoginServlet extends HttpServlet{
 			e.printStackTrace();
 		}*/
 		PrintWriter pw = resp.getWriter();
-		//HttpSession session = req.getSession();
-		resp.setContentType("text/html");
-		UserRoleDao urDao = new UserRoleDaoImpl();
-		for(UserRole ur: urDao.getUserRoles()){
-			pw.println(ur.toString());
-		}
+//		//HttpSession session = req.getSession();
+//		resp.setContentType("text/html");
+//		UserRoleDao urDao = new UserRoleDaoImpl();
+//		for(UserRole ur: urDao.getUserRoles()){
+//			pw.println(ur.toString());
+//		}
 		
 		pw.println(System.getProperty("dbUrl"));
 		

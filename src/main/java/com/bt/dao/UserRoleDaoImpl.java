@@ -42,7 +42,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
             session = HibernateUtil.getSession();
             ur =  (UserRole)session.get(UserRole.class,id);
         } catch (Exception e) {
-            return ur;
+            e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
