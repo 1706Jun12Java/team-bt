@@ -17,9 +17,9 @@ public class HibernateUtil {
     	
     	
     	
-		Configuration c = new Configuration().setProperty("hibernate.connection.url", System.getProperty("DB_URL"))
-            		 .setProperty("hibernate.connection.username", System.getProperty("DB_USERNAME"))
-            		 .setProperty("hibernate.connection.password", System.getProperty("DB_PASSWORD"))
+		Configuration c = new Configuration().setProperty("hibernate.connection.url", System.getProperty("dbUrl"))
+            		 .setProperty("hibernate.connection.username", System.getProperty("dbUsername"))
+            		 .setProperty("hibernate.connection.password", System.getProperty("dbPassword"))
             		 .configure(filename);  
 		
    		ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(c.getProperties()).build();
