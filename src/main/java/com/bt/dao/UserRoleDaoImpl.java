@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-@Component(value = "UserRoleDaoBean")
+@Component(value = "userRoleDaoImpl")
 public class UserRoleDaoImpl implements UserRoleDao {
 
 	@Autowired

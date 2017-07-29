@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet{
 		resp.setContentType("text/html");
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		UserRoleDao urDao = (UserRoleDaoImpl)context.getBean("UserRoleDaoBean");
+		UserRoleDao urDao = (UserRoleDaoImpl)context.getBean("userRoleDaoImpl");
 		for(UserRole ur: urDao.getUserRoles()){
 			pw.println(ur.toString());
 		}

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.bt.domain.User;
 import com.bt.util.HibernateUtil;
 
-@Component(value = "UserDaoBean")
+@Component(value = "userDaoImpl")
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	HibernateUtil hs;
