@@ -5,18 +5,17 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bt.domain.User;
 import com.bt.util.HibernateUtil;
 
 
-@Component(value = "userDao")
+@Component(value = "UserDaoBean")
 public class UserDaoImpl implements UserDao {
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	HibernateUtil hs = (HibernateUtil) context.getBean("hibernateUtil");
+	@Autowired
+	HibernateUtil hs;
 
 	public UserDaoImpl() {
 		// TODO Auto-generated constructor stub
