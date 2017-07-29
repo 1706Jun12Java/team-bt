@@ -11,7 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import org.springframework.stereotype.Component;
 
-@Component(value = "hibernateUtil")
+@Component(value = "HibernateUtilBean")
 public class HibernateUtil {
 	
 	private static SessionFactory sessionFactory = setSessionFactory();

@@ -4,6 +4,7 @@ import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,10 +13,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-@Component(value = "userRoleDao")
+@Component(value = "UserRoleDaoBean")
 public class UserRoleDaoImpl implements UserRoleDao {
-	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	HibernateUtil hs = (HibernateUtil) context.getBean("hibernateUtil");
+
+	@Autowired
+	HibernateUtil hs;
     
 
     /*
