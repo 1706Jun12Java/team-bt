@@ -5,8 +5,6 @@ import com.bt.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,6 @@ public class UserRoleDaoImpl implements UserRoleDao {
         Session s = hs.getSession();
         userRoles = s.createQuery("from UserRole").list();
         s.close();
-        hs.closeSession();
         return userRoles;
     }
 
@@ -79,20 +76,25 @@ public class UserRoleDaoImpl implements UserRoleDao {
     }
 
     @Override
-    public void updateUserRole(UserRole u, String userRole) {
+    public boolean updateUserRole(UserRole u) {
     	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
-			u.setUserRole(userRole);
+		try {
 			s.saveOrUpdate(u);
-		tx.commit();
-		s.close();
+			tx.commit();
+			s.close();
+			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			s.close();
+			return false;
+		}
     }
 
     @Override
-    public UserRole mergeUserRole(UserRole u, String userRole) {
+    public UserRole mergeUserRole(UserRole u) {
     	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
-		u.setUserRole(userRole);
 		UserRole u2 = (UserRole) s.merge(u);
 		tx.commit();
 		s.close();

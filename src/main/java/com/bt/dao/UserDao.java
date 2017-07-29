@@ -9,6 +9,6 @@ public interface UserDao {
 	    public User getUserById(int id);
 	    public int saveUser(User u);
 	    public void persistUser(User u);
-	    public boolean updateUser(User u, User uu);
-	    public User mergeUser(User u, User mu);
+	    public boolean updateUser(User u);
+	    public User mergeUser(User u);
 }

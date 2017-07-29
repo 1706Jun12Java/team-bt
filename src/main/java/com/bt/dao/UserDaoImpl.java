@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.bt.domain.User;
 import com.bt.util.HibernateUtil;
 
-
 @Component(value = "UserDaoBean")
 public class UserDaoImpl implements UserDao {
 	@Autowired
@@ -34,18 +33,18 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User getUserById(int id) {
 		Session session = null;
-        User u = null;
-        try {
-            session = hs.getSession();
-            u =  (User)session.get(User.class,id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return u;
+		User u = null;
+		try {
+			session = hs.getSession();
+			u = (User) session.get(User.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return u;
 	}
 
 	@Override
@@ -70,42 +69,45 @@ public class UserDaoImpl implements UserDao {
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.bt.dao.UserDao#updateUser(com.bt.domain.User, com.bt.domain.User)
-	 * This function updates User u into User uu
-	 * If the ids do not match no update function will be called and false will be returned
+	 * 
+	 * @see com.bt.dao.UserDao#updateUser(com.bt.domain.User,
+	 * com.bt.domain.User) This function updates User u into User uu If the ids
+	 * do not match no update function will be called and false will be returned
 	 * if the ids do match User u will be updated with values from User uu
 	 */
 	@Override
-	public boolean updateUser(User u, User uu) {
-		if(u.getId()==uu.getId()){
-			Session s = hs.getSession();
-			Transaction tx = s.beginTransaction();
+	public boolean updateUser(User u) {
+		Session s = hs.getSession();
+		Transaction tx = s.beginTransaction();
+		try {
 			s.saveOrUpdate(u);
 			tx.commit();
 			s.close();
 			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			s.close();
+			return false;
 		}
-		return false;
+
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see com.bt.dao.UserDao#mergeUser(com.bt.domain.User, com.bt.domain.User)
-	 * This function will merge User u and User mu
-	 * User u is the old values and User mu is new set of values
-	 * If ids do not match null will be returned
+	 * This function will merge User u and User mu User u is the old values and
+	 * User mu is new set of values If ids do not match null will be returned
 	 * otherwise the merged User mu will be returned
 	 */
 	@Override
-	public User mergeUser(User u, User mu) {
+	public User mergeUser(User u) {
 		User mergedUser = null;
-		if(u.getId()==mu.getId()){
-			Session s = hs.getSession();
-			Transaction tx = s.beginTransaction();
-			mergedUser = (User)s.merge(mu);
-			tx.commit();
-			s.close();
-		}
+		Session s = hs.getSession();
+		Transaction tx = s.beginTransaction();
+		mergedUser = (User) s.merge(u);
+		tx.commit();
+		s.close();
 		return mergedUser;
 	}
 

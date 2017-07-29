@@ -24,8 +24,6 @@ public class HibernateUtil {
 	public void closeSession(){
 		if(session.isOpen())
 			session.close();
-		else
-			System.out.println("already closed");
 	}
     private static SessionFactory sessionFactory(String filename) {
     	
