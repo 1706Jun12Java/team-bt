@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
 import com.bt.domain.User;
 import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 
+
+@Component(value = "userRole")
 public class UserDaoImpl implements UserDao {
 
 	public UserDaoImpl() {

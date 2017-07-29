@@ -59,7 +59,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
     @Override
     public int saveUserRole(UserRole u) {
-    	Session s = HibernateUtil.getSession();
+    	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		int result = (int) s.save(u);
 		tx.commit();
@@ -69,7 +69,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
     @Override
     public void persistUserRole(UserRole u) {
-    	Session s = HibernateUtil.getSession();
+    	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(u);
 		tx.commit();
@@ -78,7 +78,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
     @Override
     public void updateUserRole(UserRole u, String userRole) {
-    	Session s = HibernateUtil.getSession();
+    	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 			u.setUserRole(userRole);
 			s.saveOrUpdate(u);
@@ -88,7 +88,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 
     @Override
     public UserRole mergeUserRole(UserRole u, String userRole) {
-		Session s = HibernateUtil.getSession();
+    	Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		u.setUserRole(userRole);
 		UserRole u2 = (UserRole) s.merge(u);
