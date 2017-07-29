@@ -8,35 +8,31 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bt.domain.User;
+import com.bt.domain.Likes;
 import com.bt.util.HibernateUtil;
 
-@Component(value = "userDaoImpl")
-public class UserDaoImpl implements UserDao {
+@Component(value = "likesDaoImpl")
+public class LikesDaoImpl implements LikesDao {
 	@Autowired
 	HibernateUtil hs;
-
-	public UserDaoImpl() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getUsers() {
-		List<User> users = new ArrayList<User>();
+	public List<Likes> getLikes() {
+		List<Likes> likes = new ArrayList<Likes>();
 		Session s = hs.getSession();
-		users = s.createQuery("from User").list();
+		likes = s.createQuery("from Likes").list();
 		s.close();
-		return users;
+		return likes;
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public Likes getLikesById(int id) {
 		Session session = null;
-		User u = null;
+		Likes u = null;
 		try {
 			session = hs.getSession();
-			u = (User) session.get(User.class, id);
+			u = (Likes) session.get(Likes.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -48,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int saveUser(User u) {
+	public int saveLikes(Likes u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		int result = (int) s.save(u);
@@ -58,25 +54,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void persistUser(User u) {
+	public void persistLikes(Likes u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(u);
 		tx.commit();
 		s.close();
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.bt.dao.UserDao#updateUser(com.bt.domain.User,
-	 * com.bt.domain.User) 
-	 * This function save or updates the user
-	 * if it happens return true
-	 * if it fails return false
-	 */
 	@Override
-	public boolean updateUser(User u) {
+	public boolean updateLikes(Likes u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -89,26 +77,17 @@ public class UserDaoImpl implements UserDao {
 			s.close();
 			return false;
 		}
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.bt.dao.UserDao#mergeUser(com.bt.domain.User, com.bt.domain.User)
-	 * This function merges the user
-	 * if it happens return true
-	 * if it fails return false
-	 */
 	@Override
-	public User mergeUser(User u) {
-		User mergedUser = null;
+	public Likes mergeLikes(Likes u) {
+		Likes mergedLikes = null;
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
-		mergedUser = (User) s.merge(u);
+		mergedLikes = (Likes) s.merge(u);
 		tx.commit();
 		s.close();
-		return mergedUser;
+		return mergedLikes;
 	}
 
 }

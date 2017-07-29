@@ -8,35 +8,31 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bt.domain.User;
+import com.bt.domain.ImagePosted;
 import com.bt.util.HibernateUtil;
 
-@Component(value = "userDaoImpl")
-public class UserDaoImpl implements UserDao {
+@Component(value = "imagePostedDao")
+public class ImagePostedDaoImpl implements ImagePostedDao {
 	@Autowired
 	HibernateUtil hs;
-
-	public UserDaoImpl() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getUsers() {
-		List<User> users = new ArrayList<User>();
+	public List<ImagePosted> getImagesPosted() {
+		List<ImagePosted> imagesPosted = new ArrayList<ImagePosted>();
 		Session s = hs.getSession();
-		users = s.createQuery("from User").list();
+		imagesPosted = s.createQuery("from ImagePosted").list();
 		s.close();
-		return users;
+		return imagesPosted;
 	}
 
 	@Override
-	public User getUserById(int id) {
+	public ImagePosted getImagePostedById(int id) {
 		Session session = null;
-		User u = null;
+		ImagePosted u = null;
 		try {
 			session = hs.getSession();
-			u = (User) session.get(User.class, id);
+			u = (ImagePosted) session.get(ImagePosted.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -48,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int saveUser(User u) {
+	public int saveImagePosted(ImagePosted u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		int result = (int) s.save(u);
@@ -58,25 +54,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void persistUser(User u) {
+	public void persistImagePosted(ImagePosted u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(u);
 		tx.commit();
 		s.close();
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.bt.dao.UserDao#updateUser(com.bt.domain.User,
-	 * com.bt.domain.User) 
-	 * This function save or updates the user
-	 * if it happens return true
-	 * if it fails return false
-	 */
 	@Override
-	public boolean updateUser(User u) {
+	public boolean updateImagePosted(ImagePosted u) {
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -89,26 +77,17 @@ public class UserDaoImpl implements UserDao {
 			s.close();
 			return false;
 		}
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.bt.dao.UserDao#mergeUser(com.bt.domain.User, com.bt.domain.User)
-	 * This function merges the user
-	 * if it happens return true
-	 * if it fails return false
-	 */
 	@Override
-	public User mergeUser(User u) {
-		User mergedUser = null;
+	public ImagePosted mergeImagePosted(ImagePosted u) {
+		ImagePosted mergedImagePosted = null;
 		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
-		mergedUser = (User) s.merge(u);
+		mergedImagePosted = (ImagePosted) s.merge(u);
 		tx.commit();
 		s.close();
-		return mergedUser;
+		return mergedImagePosted;
 	}
 
 }
