@@ -3,6 +3,7 @@ package com.bt.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,5 +111,21 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return mergedUser;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+    public User login(String username, String password){
+		Session s = hs.getSession();
+		Query q = s.getNamedQuery("findUser");
+		q.setString("username", username);
+		q.setString("password", password);
+		List<User> users=q.list();
+		if(users.size()>0){
+			return users.get(0);
+		}
+		else{
+			return null;
+		}
+    }
 
 }

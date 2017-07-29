@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+
+@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
+
 @Entity
 @Table(name="BT_USER")
 public class User implements Serializable {

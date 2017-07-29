@@ -1,5 +1,6 @@
 package com.bt.dao;
 
+import com.bt.domain.User;
 import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 import org.hibernate.Session;
@@ -100,5 +101,6 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		s.close();
 		return u2;
     }
+    
 
 }

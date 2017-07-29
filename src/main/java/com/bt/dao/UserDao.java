@@ -11,4 +11,5 @@ public interface UserDao {
 	    public void persistUser(User u);
 	    public boolean updateUser(User u);
 	    public User mergeUser(User u);
+	    public User login(String username, String password);
 }
