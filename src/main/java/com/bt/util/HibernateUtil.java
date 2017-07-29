@@ -9,9 +9,24 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import org.springframework.stereotype.Component;
 
+@Component(value = "hibernateUtil")
 public class HibernateUtil {
-
+	
+	private static SessionFactory sessionFactory = setSessionFactory();
+	private static Session session;
+	
+	public Session getSession() {
+		session = sessionFactory.openSession();
+		return session;
+	}
+	public void closeSession(){
+		if(session.isOpen())
+			session.close();
+		else
+			System.out.println("already closed");
+	}
     private static SessionFactory sessionFactory(String filename) {
     	
 		Configuration c = new Configuration();
@@ -48,7 +63,7 @@ public class HibernateUtil {
         return c.buildSessionFactory(sr);
     }
 
-    public static Session getSession() {
-        return sessionFactory("hibernate.cfg.xml").openSession();
+    public static SessionFactory setSessionFactory() {
+        return sessionFactory("hibernate.cfg.xml");
     }
 }

@@ -17,10 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.bt.dao.UserRoleDao;
 import com.bt.dao.UserRoleDaoImpl;
 import com.bt.domain.User;
 import com.bt.domain.UserRole;
+import com.bt.util.HibernateUtil;
 
 public class LoginServlet extends HttpServlet{
 
@@ -42,11 +46,14 @@ public class LoginServlet extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 		//HttpSession session = req.getSession();
 		resp.setContentType("text/html");
-		UserRoleDao urDao = new UserRoleDaoImpl();
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		UserRoleDao urDao = (UserRoleDao)context.getBean("userRoleDao");
 		for(UserRole ur: urDao.getUserRoles()){
 			pw.println(ur.toString());
 		}
-
+		
+		pw.println("hi");
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("bye");

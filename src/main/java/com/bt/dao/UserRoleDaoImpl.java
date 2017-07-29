@@ -4,15 +4,19 @@ import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRoleDaoImpl implements UserRoleDao {
+import org.springframework.stereotype.Component;
 
-    public UserRoleDaoImpl() {
-        // TODO Auto-generated constructor stub
-    }
+@Component(value = "userRoleDao")
+public class UserRoleDaoImpl implements UserRoleDao {
+	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	HibernateUtil hs = (HibernateUtil) context.getBean("hibernateUtil");
+    
 
     /*
      * (non-Javadoc)
@@ -23,8 +27,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
     @Override
     public List<UserRole> getUserRoles() {
         List<UserRole> userRoles = new ArrayList<UserRole>();
-        Session s = HibernateUtil.getSession();
+        Session s = hs.getSession();
         userRoles = s.createQuery("from UserRole").list();
+        s.close();
+        hs.closeSession();
         return userRoles;
     }
 
@@ -39,7 +45,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
     	Session session = null;
         UserRole ur = null;
         try {
-            session = HibernateUtil.getSession();
+            session = hs.getSession();
             ur =  (UserRole)session.get(UserRole.class,id);
         } catch (Exception e) {
             e.printStackTrace();
