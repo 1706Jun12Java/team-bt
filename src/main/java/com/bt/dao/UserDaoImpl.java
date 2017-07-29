@@ -5,15 +5,18 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.bt.domain.User;
-import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
 
 
-@Component(value = "userRole")
+@Component(value = "userDao")
 public class UserDaoImpl implements UserDao {
+	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	HibernateUtil hs = (HibernateUtil) context.getBean("hibernateUtil");
 
 	public UserDaoImpl() {
 		// TODO Auto-generated constructor stub
@@ -23,8 +26,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
-		Session s = HibernateUtil.getSession();
+		Session s = hs.getSession();
 		users = s.createQuery("from User").list();
+		s.close();
 		return users;
 	}
 
@@ -33,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 		Session session = null;
         User u = null;
         try {
-            session = HibernateUtil.getSession();
+            session = hs.getSession();
             u =  (User)session.get(User.class,id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +51,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int saveUser(User u) {
-		Session s = HibernateUtil.getSession();
+		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		int result = (int) s.save(u);
 		tx.commit();
@@ -57,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void persistUser(User u) {
-		Session s = HibernateUtil.getSession();
+		Session s = hs.getSession();
 		Transaction tx = s.beginTransaction();
 		s.persist(u);
 		tx.commit();
@@ -75,7 +79,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updateUser(User u, User uu) {
 		if(u.getId()==uu.getId()){
-			Session s = HibernateUtil.getSession();
+			Session s = hs.getSession();
 			Transaction tx = s.beginTransaction();
 			s.saveOrUpdate(u);
 			tx.commit();
@@ -97,7 +101,7 @@ public class UserDaoImpl implements UserDao {
 	public User mergeUser(User u, User mu) {
 		User mergedUser = null;
 		if(u.getId()==mu.getId()){
-			Session s = HibernateUtil.getSession();
+			Session s = hs.getSession();
 			Transaction tx = s.beginTransaction();
 			mergedUser = (User)s.merge(mu);
 			tx.commit();
