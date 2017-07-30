@@ -2,12 +2,12 @@ package com.bt.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/test")
 public class TestController {
-	@RequestMapping(value="/1")
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String test(){
-		return "html/test.html";
+		return "html/index.html";
 	}
 }
