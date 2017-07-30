@@ -1,0 +1,51 @@
+2017-07-29 17:58:54 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@98385c: startup date [Sat Jul 29 17:58:54 EDT 2017]; root of context hierarchy
+2017-07-29 17:58:54 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2017-07-29 18:03:12 INFO  ClassPathXmlApplicationContext:578 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@98385c: startup date [Sat Jul 29 18:03:12 EDT 2017]; root of context hierarchy
+2017-07-29 18:03:12 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [beans.xml]
+2017-07-29 18:03:13 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2017-07-29 18:03:13 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2017-07-29 18:03:13 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2017-07-29 18:03:13 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2017-07-29 18:03:13 INFO  Configuration:2075 - HHH000043: Configuring from resource: hibernate.cfg.xml
+2017-07-29 18:03:13 INFO  Configuration:2094 - HHH000040: Configuration resource: hibernate.cfg.xml
+2017-07-29 18:03:13 INFO  Configuration:2216 - HHH000041: Configured SessionFactory: null
+2017-07-29 18:03:13 WARN  DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2017-07-29 18:03:13 INFO  DriverManagerConnectionProviderImpl:166 - HHH000401: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@sqldev.cth5t6dbmjzg.us-east-1.rds.amazonaws.com:1521:ORCL]
+2017-07-29 18:03:13 INFO  DriverManagerConnectionProviderImpl:175 - HHH000046: Connection properties: {user=project2, password=****}
+2017-07-29 18:03:13 INFO  DriverManagerConnectionProviderImpl:180 - HHH000006: Autocommit mode: false
+2017-07-29 18:03:13 INFO  DriverManagerConnectionProviderImpl:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2017-07-29 18:03:13 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2017-07-29 18:03:14 WARN  RootClass:288 - HHH000038: Composite-id class does not override equals(): com.bt.domain.ImageTags
+2017-07-29 18:03:14 WARN  RootClass:289 - HHH000039: Composite-id class does not override hashCode(): com.bt.domain.ImageTags
+2017-07-29 18:03:14 WARN  RootClass:288 - HHH000038: Composite-id class does not override equals(): com.bt.domain.Likes
+2017-07-29 18:03:14 WARN  RootClass:289 - HHH000039: Composite-id class does not override hashCode(): com.bt.domain.Likes
+2017-07-29 18:03:14 INFO  TransactionFactoryInitiator:62 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2017-07-29 18:03:14 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2017-07-29 18:03:14 INFO  SchemaUpdate:207 - HHH000228: Running hbm2ddl schema update
+2017-07-29 18:03:14 INFO  SchemaUpdate:218 - HHH000102: Fetching database metadata
+2017-07-29 18:03:14 INFO  SchemaUpdate:230 - HHH000396: Updating schema
+2017-07-29 18:03:14 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_IMAGE
+2017-07-29 18:03:14 INFO  TableMetadata:66 - HHH000037: Columns: [image, posted_by, caption, img_id]
+2017-07-29 18:03:14 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_posted_by]
+2017-07-29 18:03:14 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006115]
+2017-07-29 18:03:14 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_IMG_TAGS
+2017-07-29 18:03:14 INFO  TableMetadata:66 - HHH000037: Columns: [tag_id, image_id]
+2017-07-29 18:03:14 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_img, fk_tag]
+2017-07-29 18:03:14 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006116]
+2017-07-29 18:03:14 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_LIKES
+2017-07-29 18:03:14 INFO  TableMetadata:66 - HHH000037: Columns: [user_id, image_id]
+2017-07-29 18:03:14 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_img_liked, fk_liked_by]
+2017-07-29 18:03:14 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006117]
+2017-07-29 18:03:14 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_TAGS
+2017-07-29 18:03:14 INFO  TableMetadata:66 - HHH000037: Columns: [tag_id, tag]
+2017-07-29 18:03:14 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2017-07-29 18:03:14 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006119]
+2017-07-29 18:03:15 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_USER
+2017-07-29 18:03:15 INFO  TableMetadata:66 - HHH000037: Columns: [fname, user_role, lname, password, user_id, email, username]
+2017-07-29 18:03:15 INFO  TableMetadata:68 - HHH000108: Foreign keys: [fk_bt_user_roles]
+2017-07-29 18:03:15 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006004, uk_99b69020uxwimkmeo5r19k74u, uk_p73xrpo2i9sg3rxoeytaoqphk]
+2017-07-29 18:03:15 INFO  TableMetadata:65 - HHH000261: Table found: PROJECT2.BT_USER_ROLE
+2017-07-29 18:03:15 INFO  TableMetadata:66 - HHH000037: Columns: [user_role, ur_id]
+2017-07-29 18:03:15 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2017-07-29 18:03:15 INFO  TableMetadata:69 - HHH000126: Indexes: [sys_c006006]
+2017-07-29 18:03:15 INFO  SchemaUpdate:267 - HHH000232: Schema update complete

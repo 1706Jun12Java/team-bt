@@ -3,6 +3,7 @@ package com.bt.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,16 +65,16 @@ public class UserDaoImpl implements UserDao {
 		s.persist(u);
 		tx.commit();
 		s.close();
-
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see com.bt.dao.UserDao#updateUser(com.bt.domain.User,
-	 * com.bt.domain.User) This function updates User u into User uu If the ids
-	 * do not match no update function will be called and false will be returned
-	 * if the ids do match User u will be updated with values from User uu
+	 * com.bt.domain.User) 
+	 * This function save or updates the user
+	 * if it happens return true
+	 * if it fails return false
 	 */
 	@Override
 	public boolean updateUser(User u) {
@@ -96,9 +97,9 @@ public class UserDaoImpl implements UserDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.bt.dao.UserDao#mergeUser(com.bt.domain.User, com.bt.domain.User)
-	 * This function will merge User u and User mu User u is the old values and
-	 * User mu is new set of values If ids do not match null will be returned
-	 * otherwise the merged User mu will be returned
+	 * This function merges the user
+	 * if it happens return true
+	 * if it fails return false
 	 */
 	@Override
 	public User mergeUser(User u) {
@@ -110,5 +111,21 @@ public class UserDaoImpl implements UserDao {
 		s.close();
 		return mergedUser;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+    public User login(String username, String password){
+		Session s = hs.getSession();
+		Query q = s.getNamedQuery("findUser");
+		q.setString("username", username);
+		q.setString("password", password);
+		List<User> users=q.list();
+		if(users.size()>0){
+			return users.get(0);
+		}
+		else{
+			return null;
+		}
+    }
 
 }

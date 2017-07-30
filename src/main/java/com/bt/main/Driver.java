@@ -1,12 +1,20 @@
 package com.bt.main;
 
+import com.bt.dao.UserDao;
+import com.bt.dao.UserDaoImpl;
 import com.bt.dao.UserRoleDao;
 import com.bt.dao.UserRoleDaoImpl;
 import com.bt.domain.User;
 import com.bt.domain.UserRole;
 import com.bt.util.HibernateUtil;
+
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Driver {
 
@@ -57,5 +65,6 @@ public class Driver {
 //			}
 //		}
 //	}
+
 
 }
