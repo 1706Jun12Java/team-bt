@@ -11,7 +11,7 @@
 <body>
 
 	<p> Hello </p>
-
+	<a href="test">Get info</a>
 <script src="js/app.js"></script>
 </body>
 </html>
