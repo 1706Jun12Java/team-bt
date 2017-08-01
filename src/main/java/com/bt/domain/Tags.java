@@ -60,7 +60,7 @@ public class Tags implements Serializable {
 
     @OneToMany(mappedBy="tag",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private List<ImageTags> members;
-    public List<ImageTags> getPostsByThisTag() {
+    public List<ImageTags> getPostsOfThisTag() {
         return members;
     }
 }

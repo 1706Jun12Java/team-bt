@@ -9,6 +9,6 @@ public interface UserRoleDao {
     public UserRole getUserRoleById(int id);
     public int saveUserRole(UserRole u);
     public void persistUserRole(UserRole u);
-    public UserRole updateUserRole(UserRole u, String newName);
-    public UserRole mergeUserRole(UserRole u,String newName);
+    public boolean updateUserRole(UserRole u);
+    public UserRole mergeUserRole(UserRole u);
 }
