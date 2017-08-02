@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class IndexController {
     @RequestMapping(value="*", method= RequestMethod.GET)
     public String test(){
-        return "index";
+        return "static/index.html";
     }
     @RequestMapping(value="/test", method=RequestMethod.GET)
     public void getInfo(HttpServletRequest req, HttpServletResponse resp){
