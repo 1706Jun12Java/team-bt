@@ -8,12 +8,12 @@
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/static/views/home.html',
+                templateUrl: 'static/views/home.html',
                 controller: 'HomeCtrl',
                 controllerAs: 'vm'
             })
             .when('/login', {
-                templateUrl: '/static/views/login.html',
+                templateUrl: 'static/views/login.html',
                 controller: 'LoginCtrl',
                 controllerAs: 'vm'
             })
