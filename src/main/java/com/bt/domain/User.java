@@ -142,10 +142,19 @@ public class User implements Serializable {
         return images;
     }
 
-    @OneToMany(mappedBy="likedBy",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<Likes> members;
-    public List<Likes> getMyLikes() {
-        return members;
+    @ManyToMany(cascade=CascadeType.ALL)
+    List<ImagePosted> likes;
+
+    public List<ImagePosted> getLikedImages() {
+        return likes;
+    }
+
+    public void setLikedImages(List<ImagePosted> likes) {
+        this.likes = likes;
+    }
+
+    public void likeImage(ImagePosted b) {
+        likes.add(b);
     }
 }
 
