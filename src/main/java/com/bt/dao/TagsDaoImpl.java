@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 
 import com.bt.domain.Tags;
 import com.bt.util.HibernateUtil;
+import org.springframework.stereotype.Service;
 
-@Component(value = "tagsDaoImpl")
+@Service
 public class TagsDaoImpl implements TagsDao {
 	@Autowired
 	HibernateUtil hs;
