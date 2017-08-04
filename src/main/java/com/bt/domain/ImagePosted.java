@@ -22,6 +22,7 @@ public class ImagePosted implements Serializable {
     @Column(name="CAPTION")
     private String caption;
 
+    @Lob
     @Column(name="IMAGE")
     private Blob image;
 
