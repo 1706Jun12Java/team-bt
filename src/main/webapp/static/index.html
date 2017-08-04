@@ -9,20 +9,32 @@
     <meta name="author" content="">
     <title>team bt</title>
 
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+
+    <!-- ANGULAR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+
+    <!-- JQUERY + BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
 
     <base href="/" />
 </head>
 
 <body>
-    <p>asd</p>
-    <div ng-view></div>
 
-    <script src="/app/app.js"></script>
-    <script src="/app/controllers/home.js"></script>
-    <script src="/app/controllers/login.js"></script>
+<div ng-view></div>
+
+<!-- CONTROLLERS -->
+<script src="static/app/app.js"></script>
+<script src="static/app/controllers/home.js"></script>
+<script src="static/app/controllers/login.js"></script>
+
+<!-- DIRECTIVES -->
+<script src="static/app/directives/navBarDirective.js"></script>
 
 </body>
 
