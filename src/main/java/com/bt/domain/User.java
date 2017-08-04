@@ -47,7 +47,14 @@ public class User implements Serializable {
     public User() {
         // TODO Auto-generated constructor stub
     }
-
+    public User(String username, String password, String fName, String lName, String email) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+    }
 
     public User(String username, String password, String fName, String lName, String email, UserRole userRole) {
         super();
@@ -155,6 +162,18 @@ public class User implements Serializable {
 
     public void likeImage(ImagePosted b) {
         likes.add(b);
+    }
+
+    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="PH_ID")
+    private PhoneNumber phoneNumber;
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 
