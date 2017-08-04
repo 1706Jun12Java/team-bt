@@ -1,8 +1,5 @@
 package com.bt.controllers;
 
-import com.bt.dao.UserRoleDao;
-import com.bt.dao.UserRoleDaoImpl;
-import com.bt.domain.UserRole;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;

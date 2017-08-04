@@ -58,9 +58,18 @@ public class Tags implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
-    @OneToMany(mappedBy="tag",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<ImageTags> members;
-    public List<ImageTags> getPostsOfThisTag() {
-        return members;
+    @ManyToMany(cascade=CascadeType.ALL)
+    List<ImagePosted> images;
+
+    public List<ImagePosted> getImagesOfThisTag(){
+        return this.images;
     }
+    public void setImagesForThisTag( List<ImagePosted> images){
+        this.images=images;
+    }
+    public void addImage(ImagePosted image){
+        images.add(image);
+    }
+
+
 }
