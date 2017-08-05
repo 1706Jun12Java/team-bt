@@ -3,11 +3,7 @@ package com.bt.controllers;
 import com.bt.domain.User;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -16,7 +12,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value="/login",method=RequestMethod.POST)
-    public ResponseEntity loginUser(@RequestBody String user){
+    public User loginUser(@RequestBody String user){
         Gson gson = new Gson();
 
         User userInfo = gson.fromJson(user, User.class);
@@ -26,7 +22,7 @@ public class UserController {
 
         userInfo.setPassword(null);
 
-        return new ResponseEntity(userInfo, HttpStatus.OK);
+        return userInfo;
     }
 
 }
