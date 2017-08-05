@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('RegisterCtrl', ['$scope', '$http', function($scope, $http, $location, userService){
+        .controller('RegisterCtrl', ['$scope', '$http', '$location', 'userService', function($scope, $http, $location, userService){
             $scope.registerUser = function() {
                 $http.post('/register', $scope.user,$scope.phoneNumber)
                     .then(function(response) {
