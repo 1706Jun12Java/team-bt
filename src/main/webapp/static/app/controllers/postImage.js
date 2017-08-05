@@ -5,6 +5,14 @@
         .module('app')
         .controller('PostImageCtrl', ['$scope', '$http', '$location', 'userService', function($scope, $http, $location, userService){
             $scope.newImage = function() {
+
+                var reader = new FileReader();
+                reader.readAsDataURL($scope.postImage.image);
+                reader.onloadend = function($scope){
+                    $scope.postImage.image=reader.result;
+                }
+
+
                 $http.post('/postImage', $scope.postImage)
                     .then(function(response) {
                         console.log("sucess");

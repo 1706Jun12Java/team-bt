@@ -92,4 +92,13 @@ public class UserController {
         }
         return null;
     }
+
+    @ResponseBody
+    @RequestMapping(value="/logout",method=RequestMethod.POST)
+    public ResponseEntity logout(HttpServletRequest req, HttpServletResponse res, @RequestBody String postImage){
+
+        HttpSession session = req.getSession();
+        session.invalidate();
+        return null;
+    }
 }

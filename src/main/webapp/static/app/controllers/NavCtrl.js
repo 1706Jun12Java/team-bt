@@ -5,9 +5,9 @@
         .module('app')
         .controller('navCtrl', navCtrl);
 
-    navCtrl.$inject = ['$scope', '$location', '$route', 'userService'];
+    navCtrl.$inject = ['$scope', '$location', '$route', 'userService', '$http'];
 
-    function navCtrl($scope, $location, $route, userService) {
+    function navCtrl($scope, $location, $route, userService, $http) {
         var vm = this;
         vm.isAuthenticated = userService.isAuthenticated();
         vm.logout = function() {
