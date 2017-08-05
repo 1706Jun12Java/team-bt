@@ -5,7 +5,7 @@
         .module('app')
         .factory('userService', userService);
 
-    // UserService.$inject = [];
+    userService.$inject = [];
 
     function userService() {
 
@@ -13,6 +13,7 @@
 
         var userService = {
             setInfo: function(info) {
+                // console.log($cookies.getAll());
                 userInfo = info;
             },
             removeInfo: function() {

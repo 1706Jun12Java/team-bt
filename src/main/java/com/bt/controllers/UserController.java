@@ -5,6 +5,10 @@ import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 @RestController
 public class UserController {
@@ -12,7 +16,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value="/login",method=RequestMethod.POST)
-    public User loginUser(@RequestBody String user){
+    public User loginUser(HttpServletRequest req, HttpServletResponse res, @RequestBody String user){
         Gson gson = new Gson();
 
         User userInfo = gson.fromJson(user, User.class);
@@ -21,6 +25,9 @@ public class UserController {
         logger.info(userInfo.toString());
 
         userInfo.setPassword(null);
+        HttpSession session = req.getSession();
+
+        session.setAttribute("user", userInfo);
 
         return userInfo;
     }
