@@ -118,5 +118,4 @@ public class ImagePosted implements Serializable {
     public void addLikedByThisUser(User b) {
         likedBy.add(b);
     }
-
 }

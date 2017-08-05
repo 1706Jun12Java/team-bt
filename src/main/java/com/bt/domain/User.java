@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
+
 //@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
 @NamedQueries({ @NamedQuery(name = "findUser", query = "from User where email = :email and password= :password") })
 @Entity
@@ -45,6 +46,7 @@ public class User implements Serializable {
     public User() {
         // TODO Auto-generated constructor stub
     }
+
     public User(String email, String password, String fName, String lName) {
         super();
         this.password = password;

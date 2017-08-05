@@ -70,6 +70,4 @@ public class Tags implements Serializable {
     public void addImage(ImagePosted image){
         images.add(image);
     }
-
-
 }
