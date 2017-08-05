@@ -1,9 +1,7 @@
 package com.bt.controllers;
 
-import com.bt.dao.UserDao;
-import com.bt.dao.UserDaoImpl;
-import com.bt.dao.UserRoleDao;
-import com.bt.dao.UserRoleDaoImpl;
+import com.bt.dao.*;
+import com.bt.domain.ImagePosted;
 import com.bt.domain.PhoneNumber;
 import com.bt.domain.User;
 import com.bt.domain.UserRole;
@@ -73,5 +71,23 @@ public class UserController {
         //userInfo.setPassword(null);
 
         return new ResponseEntity(gson.toJson(userInfo.getEmail()), HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/postImage",method=RequestMethod.POST)
+    public ResponseEntity postImage(HttpServletRequest req, HttpServletResponse res, @RequestBody String postImage){
+        Gson gson = new Gson();
+
+        ImagePosted newImage = gson.fromJson(postImage, ImagePosted.class);
+        logger.info(newImage.toString());
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+
+        newImage.setPoster(user);
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+
+        iDao.persistImagePosted(newImage);
+        return new ResponseEntity(gson.toJson(user.getEmail()), HttpStatus.OK);
     }
 }

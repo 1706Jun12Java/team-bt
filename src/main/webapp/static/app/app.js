@@ -12,6 +12,11 @@
                 controller: 'HomeCtrl',
                 controllerAs: 'vm'
             })
+            .when('/postImage', {
+                templateUrl: '/static/views/postimage.html',
+                controller: 'PostImageCtrl',
+                controllerAs: 'vm'
+            })
             .when('/register', {
                 templateUrl: '/static/views/register.html',
                 controller: 'RegisterCtrl',
