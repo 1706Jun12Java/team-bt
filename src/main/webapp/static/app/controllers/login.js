@@ -15,7 +15,6 @@
                         console.log(error);
                         console.log($scope.user);
                     })
-
             };
         }]);
 })();
