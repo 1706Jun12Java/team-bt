@@ -21,26 +21,4 @@ public class IndexController {
     public String test(){
         return "static/index.html";
     }
-    @RequestMapping(value="/test", method=RequestMethod.GET)
-    public void getInfo(HttpServletRequest req, HttpServletResponse resp){
-
-        PrintWriter pw;
-        try {
-            pw = resp.getWriter();
-            resp.setContentType("text/html");
-
-            ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-            UserRoleDao urDao = (UserRoleDaoImpl)context.getBean("userRoleDaoImpl");
-            for(UserRole ur: urDao.getUserRoles()){
-                pw.println(ur.toString());
-            }
-
-            pw.println("hi");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        //HttpSession session = req.getSession();
-
-    }
 }
