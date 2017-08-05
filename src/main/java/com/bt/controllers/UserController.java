@@ -41,10 +41,7 @@ public class UserController {
 
         session.setAttribute("user", loggedInUser);
 
-        userInfo.setPassword(null);
-        userInfo.setfName(loggedInUser.getfName());
-
-        return new ResponseEntity<>(userInfo, HttpStatus.OK);
+        return new ResponseEntity(gson.toJson(userInfo.getEmail()), HttpStatus.OK);
     }
 
     @ResponseBody
