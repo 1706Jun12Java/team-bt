@@ -115,10 +115,10 @@ public class UserDaoImpl implements UserDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-    public User login(String username, String password){
+    public User login(String email, String password){
 		Session s = hs.getSession();
 		Query q = s.getNamedQuery("findUser");
-		q.setString("username", username);
+		q.setString("email", email);
 		q.setString("password", password);
 		List<User> users=q.list();
 		if(users.size()>0){

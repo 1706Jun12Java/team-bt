@@ -17,7 +17,7 @@ public class PhoneNumber implements Serializable {
     @Column(name="PHONE_NUMBER")
     private int phoneNumber;
 
-    @OneToOne(fetch=FetchType.EAGER)
+    @OneToOne(fetch=FetchType.LAZY)
     private User user;
 
 

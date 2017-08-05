@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
-
+//@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
+@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where email = :email and password= :password") })
 @Entity
 @Table(name="BT_USER")
 public class User implements Serializable {
@@ -164,7 +164,7 @@ public class User implements Serializable {
         likes.add(b);
     }
 
-    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="PH_ID")
     private PhoneNumber phoneNumber;
 
