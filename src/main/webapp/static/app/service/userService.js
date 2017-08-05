@@ -3,29 +3,25 @@
 
     angular
         .module('app')
-        .factory('userService', userService);
+        .factory('userService', ['$cookies', function userService ($cookies) {
+                var userService = {
+                    setInfo: function(info) {
+                        console.log(info);
 
-    userService.$inject = [];
+                        $cookies.put('user', JSON.stringify(info));
+                        console.log($cookies.get('user'));
 
-    function userService() {
-
-        var userInfo = null;
-
-        var userService = {
-            setInfo: function(info) {
-                // console.log($cookies.getAll());
-                userInfo = info;
-            },
-            removeInfo: function() {
-                userInfo = null;
-            },
-            isAuthenticated: function() {
-                if (userInfo !== null)
-                    return true;
-                return false;
-            }
-        };
-
-        return userService;
-    }
+                        console.log(JSON.parse($cookies.get('user')).email);
+                    },
+                    removeInfo: function() {
+                        $cookies.remove('user');
+                    },
+                    isAuthenticated: function() {
+                        if ($cookies.get('user'))
+                            return true;
+                        return false;
+                    }
+                };
+                return userService;
+        }])
 })();

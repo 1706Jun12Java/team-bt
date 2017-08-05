@@ -8,14 +8,11 @@
                 $http.post('/login', $scope.user)
                     .then(function(response) {
                         console.log("sucess");
-                        console.log($scope.user);
-                        $location.path('/');
                         userService.setInfo(response.data);
-                        console.log(response);
+                        $location.path('/');
                     }, function (error) {
                         console.log("error");
                         console.log(error);
-                        console.log($scope.user);
                     })
             };
         }]);

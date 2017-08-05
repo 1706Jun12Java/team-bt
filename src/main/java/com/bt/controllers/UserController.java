@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,32 +22,29 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value="/login",method=RequestMethod.POST)
-    public User loginUser(HttpServletRequest req, HttpServletResponse res, @RequestBody String user){
+    public ResponseEntity loginUser(HttpServletRequest req, HttpServletResponse res, @RequestBody String user){
 
         Gson gson = new Gson();
 
         User userInfo = gson.fromJson(user, User.class);
 
-        System.out.println(userInfo.toString());
-        logger.info(userInfo.toString());
-
-
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         UserDao userDao = (UserDaoImpl) ac.getBean("userDaoImpl");
 
         User loggedInUser = userDao.login(userInfo.getEmail(), userInfo.getPassword());
-//        session.setAttribute("id",loggedInUser.getId());
 
-        //System.out.println("TEST123432453254354354");
         System.out.println(loggedInUser);
+
+        loggedInUser.setPassword(null);
 
         HttpSession session = req.getSession();
 
         session.setAttribute("user", loggedInUser);
 
-        System.out.println(loggedInUser.toString());
+        userInfo.setPassword(null);
+        userInfo.setfName(loggedInUser.getfName());
 
-        return userInfo;
+        return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
 
     @ResponseBody

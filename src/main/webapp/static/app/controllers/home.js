@@ -3,8 +3,7 @@
 
     angular
         .module('app')
-        .controller('HomeCtrl', ['$scope', function($scope){
-            console.log("home");
+        .controller('HomeCtrl', ['$scope', '$cookies', function($scope, $cookies){
 
         }]);
 })();
