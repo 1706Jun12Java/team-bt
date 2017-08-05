@@ -39,10 +39,11 @@ public class UserController {
         //System.out.println("TEST123432453254354354");
         System.out.println(loggedInUser);
 
-        userInfo.setPassword(null);
         HttpSession session = req.getSession();
 
-        session.setAttribute("user", userInfo);
+        session.setAttribute("user", loggedInUser);
+
+        System.out.println(loggedInUser.toString());
 
         return userInfo;
     }
