@@ -9,7 +9,7 @@
                     .then(function(response) {
                         console.log("sucess");
                         console.log($scope.user);
-                        <!--userService.setInfo(response.data);-->
+                        userService.setInfo(response.data);
                         console.log(response);
                         $location.path('/');
                     }, function (error) {
