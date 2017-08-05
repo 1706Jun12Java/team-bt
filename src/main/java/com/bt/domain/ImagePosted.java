@@ -2,7 +2,7 @@ package com.bt.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Blob;
+import java.sql.Clob;
 import java.util.List;
 
 @Entity
@@ -24,7 +24,7 @@ public class ImagePosted implements Serializable {
 
     @Lob
     @Column(name="IMAGE")
-    private Blob image;
+    private Clob image;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="POSTED_BY", foreignKey = @ForeignKey(name = "FK_POSTED_BY"))
@@ -36,7 +36,7 @@ public class ImagePosted implements Serializable {
     }
 
 
-    public ImagePosted(String caption, Blob image, User poster) {
+    public ImagePosted(String caption, Clob image, User poster) {
         super();
         this.caption = caption;
         this.image = image;
@@ -64,12 +64,12 @@ public class ImagePosted implements Serializable {
     }
 
 
-    public Blob getImage() {
+    public Clob getImage() {
         return image;
     }
 
 
-    public void setImage(Blob image) {
+    public void setImage(Clob image) {
         this.image = image;
     }
 
