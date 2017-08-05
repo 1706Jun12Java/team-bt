@@ -92,4 +92,5 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
         return mergedImagePosted;
     }
 
+
 }

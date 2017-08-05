@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.StringReader;
 
 
 @RestController
@@ -78,8 +79,14 @@ public class UserController {
     public ResponseEntity postImage(HttpServletRequest req, HttpServletResponse res, @RequestBody String postImage){
         Gson gson = new Gson();
 
-        ImagePosted newImage = gson.fromJson(postImage, ImagePosted.class);
+        String caption = (String) req.getAttribute("inputCaption");
+
+        //ImagePosted newImage = gson.fromJson(postImage, ImagePosted.class);
+        ImagePosted newImage = new ImagePosted();
+        newImage.setCaption(caption);
+
         logger.info(newImage.toString());
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if(user!=null) {
