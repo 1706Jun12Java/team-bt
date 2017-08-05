@@ -8,7 +8,6 @@
                     setInfo: function(info) {
                         $cookies.put('user', JSON.stringify(info));
                         console.log("user cookie: : ", $cookies.get('user'));
-
                     },
                     removeInfo: function() {
                         $cookies.remove('user');
