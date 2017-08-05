@@ -11,4 +11,5 @@ public interface PhoneNumberDao {
     public void persistPhoneNumber(PhoneNumber u);
     public boolean updatePhoneNumber(PhoneNumber u);
     public PhoneNumber mergePhoneNumber(PhoneNumber u);
+    public PhoneNumber findPhoneNumberByNumber(int ph);
 }

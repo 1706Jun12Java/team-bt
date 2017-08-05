@@ -2,6 +2,7 @@ package com.bt.dao;
 
 import com.bt.domain.PhoneNumber;
 import com.bt.util.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +86,19 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao{
         tx.commit();
         s.close();
         return mergedPhoneNumber;
+    }
+
+    @Override
+    public PhoneNumber findPhoneNumberByNumber(int ph) {
+        Session s = hs.getSession();
+        Query q = s.getNamedQuery("findPh");
+        q.setInteger("phoneNumber", ph);
+        List<PhoneNumber> phs=q.list();
+        if(phs.size()>0){
+            return phs.get(0);
+        }
+        else{
+            return null;
+        }
     }
 }

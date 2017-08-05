@@ -3,6 +3,7 @@ package com.bt.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NamedQueries({ @NamedQuery(name = "findPh", query = "from PhoneNumber where phoneNumber = :phoneNumber") })
 @Entity
 @Table(name="BT_PHONE_NUMBER")
 public class PhoneNumber implements Serializable {
@@ -14,7 +15,7 @@ public class PhoneNumber implements Serializable {
     @Column(name = "PH_ID")
     private int id;
 
-    @Column(name="PHONE_NUMBER")
+    @Column(name="PHONE_NUMBER", unique=true)
     private int phoneNumber;
 
     @OneToOne(fetch=FetchType.LAZY)
