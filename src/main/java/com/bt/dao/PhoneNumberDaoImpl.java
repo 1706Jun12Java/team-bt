@@ -89,10 +89,10 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao{
     }
 
     @Override
-    public PhoneNumber findPhoneNumberByNumber(int ph) {
+    public PhoneNumber findPhoneNumberByNumber(String ph) {
         Session s = hs.getSession();
         Query q = s.getNamedQuery("findPh");
-        q.setInteger("phoneNumber", ph);
+        q.setString("phoneNumber", ph);
         List<PhoneNumber> phs=q.list();
         if(phs.size()>0){
             return phs.get(0);

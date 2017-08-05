@@ -16,17 +16,17 @@ public class PhoneNumber implements Serializable {
     private int id;
 
     @Column(name="PHONE_NUMBER", unique=true)
-    private int phoneNumber;
+    private String phoneNumber;
 
     @OneToOne(fetch=FetchType.LAZY)
     private User user;
 
 
-    public PhoneNumber(int phoneNumber, User user) {
+    public PhoneNumber(String phoneNumber, User user) {
         this.phoneNumber = phoneNumber;
         this.user = user;
     }
-    public PhoneNumber(int phoneNumber) {
+    public PhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public PhoneNumber() {
@@ -41,7 +41,7 @@ public class PhoneNumber implements Serializable {
         this.user = user;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
