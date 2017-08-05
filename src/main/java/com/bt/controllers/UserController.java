@@ -2,7 +2,11 @@ package com.bt.controllers;
 
 import com.bt.dao.UserDao;
 import com.bt.dao.UserDaoImpl;
+import com.bt.dao.UserRoleDao;
+import com.bt.dao.UserRoleDaoImpl;
+import com.bt.domain.PhoneNumber;
 import com.bt.domain.User;
+import com.bt.domain.UserRole;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -46,22 +50,28 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value="/register",method=RequestMethod.POST)
-    public User registerUser(@RequestBody String user){
+    public ResponseEntity registerUser(HttpServletRequest req, HttpServletResponse res, @RequestBody String user){
         Gson gson = new Gson();
 
         User userInfo = gson.fromJson(user, User.class);
-
         System.out.println(userInfo.toString());
         logger.info(userInfo.toString());
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         UserDao userDao = (UserDaoImpl) ac.getBean("userDaoImpl");
+        UserRoleDao urDao = (UserRoleDaoImpl) ac.getBean("userRoleDaoImpl");
 
-        User registerUser=null;
+        UserRole ur = urDao.getUserRoleById(2);
+        userInfo.setUserRole(ur);
+        userDao.persistUser(userInfo);
 
+        HttpSession session = req.getSession();
+
+        session.setAttribute("user", userInfo);
+        System.out.print(userInfo);
 
         //userInfo.setPassword(null);
 
-        return registerUser;
+        return new ResponseEntity(gson.toJson(userInfo.getEmail()), HttpStatus.OK);
     }
 }

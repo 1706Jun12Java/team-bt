@@ -3,13 +3,15 @@
 
     angular
         .module('app')
-        .controller('RegisterCtrl', ['$scope', '$http', function($scope, $http){
+        .controller('RegisterCtrl', ['$scope', '$http', function($scope, $http, $location, userService){
             $scope.registerUser = function() {
-                $http.post('/register', $scope.user)
+                $http.post('/register', $scope.user,$scope.phoneNumber)
                     .then(function(response) {
                         console.log("sucess");
                         console.log($scope.user);
+                        <!--userService.setInfo(response.data);-->
                         console.log(response);
+                        $location.path('/');
                     }, function (error) {
                         console.log("error");
                         console.log(error);
