@@ -1,40 +1,36 @@
 package com.bt.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.bt.domain.PhoneNumber;
+import com.bt.util.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.bt.domain.ImagePosted;
-import com.bt.util.HibernateUtil;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ImagePostedDaoImpl implements ImagePostedDao {
+import java.util.ArrayList;
+import java.util.List;
 
+@Service
+public class PhoneNumberDaoImpl implements PhoneNumberDao{
     @Autowired
     HibernateUtil hs;
-
-    @SuppressWarnings("unchecked")
     @Override
-    public List<ImagePosted> getImagesPosted() {
-        List<ImagePosted> imagesPosted = new ArrayList<ImagePosted>();
+    public List<PhoneNumber> getPhoneNumbers() {
+        List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
         Session s = hs.getSession();
-        imagesPosted = s.createQuery("from ImagePosted").list();
+        phoneNumbers = s.createQuery("from PhoneNumber").list();
         s.close();
-        return imagesPosted;
+        return phoneNumbers;
     }
 
     @Override
-    public ImagePosted getImagePostedById(int id) {
+    public PhoneNumber getPhoneNumberById(int id) {
         Session session = null;
-        ImagePosted u = null;
+        PhoneNumber u = null;
         try {
             session = hs.getSession();
-            u = (ImagePosted) session.get(ImagePosted.class, id);
+            u = (PhoneNumber) session.get(PhoneNumber.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -46,7 +42,7 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
     }
 
     @Override
-    public int saveImagePosted(ImagePosted u) {
+    public int savePhoneNumber(PhoneNumber u) {
         Session s = hs.getSession();
         Transaction tx = s.beginTransaction();
         int result = (int) s.save(u);
@@ -56,7 +52,7 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
     }
 
     @Override
-    public void persistImagePosted(ImagePosted u) {
+    public void persistPhoneNumber(PhoneNumber u) {
         Session s = hs.getSession();
         Transaction tx = s.beginTransaction();
         s.persist(u);
@@ -66,7 +62,7 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
     }
 
     @Override
-    public boolean updateImagePosted(ImagePosted u) {
+    public boolean updatePhoneNumber(PhoneNumber u) {
         Session s = hs.getSession();
         Transaction tx = s.beginTransaction();
         try {
@@ -82,14 +78,27 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
     }
 
     @Override
-    public ImagePosted mergeImagePosted(ImagePosted u) {
-        ImagePosted mergedImagePosted = null;
+    public PhoneNumber mergePhoneNumber(PhoneNumber u) {
+        PhoneNumber mergedPhoneNumber = null;
         Session s = hs.getSession();
         Transaction tx = s.beginTransaction();
-        mergedImagePosted = (ImagePosted) s.merge(u);
+        mergedPhoneNumber = (PhoneNumber) s.merge(u);
         tx.commit();
         s.close();
-        return mergedImagePosted;
+        return mergedPhoneNumber;
     }
 
+    @Override
+    public PhoneNumber findPhoneNumberByNumber(int ph) {
+        Session s = hs.getSession();
+        Query q = s.getNamedQuery("findPh");
+        q.setInteger("phoneNumber", ph);
+        List<PhoneNumber> phs=q.list();
+        if(phs.size()>0){
+            return phs.get(0);
+        }
+        else{
+            return null;
+        }
+    }
 }

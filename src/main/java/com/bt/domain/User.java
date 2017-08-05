@@ -5,8 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 
 
-@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
 
+//@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where username = :username and password= :password") })
+@NamedQueries({ @NamedQuery(name = "findUser", query = "from User where email = :email and password= :password") })
 @Entity
 @Table(name="BT_USER")
 public class User implements Serializable {
@@ -21,8 +22,6 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
     private int id;
 
-    @Column(name="USERNAME", unique = true)
-    private String username;
 
     @Column(name="PASSWORD")
     private String password;
@@ -48,15 +47,31 @@ public class User implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
-
-    public User(String username, String password, String fName, String lName, String email, UserRole userRole) {
+    public User(String email, String password, String fName, String lName) {
         super();
-        this.username = username;
+        this.password = password;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+    }
+
+    public User(String email, String password, String fName, String lName, UserRole userRole) {
+        super();
         this.password = password;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.role = userRole;
+    }
+
+    public User(String email, String password, String fName, String lName, UserRole userRole, PhoneNumber ph) {
+        super();
+        this.password = password;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.role = userRole;
+        this.phoneNumber=ph;
     }
 
 
@@ -67,16 +82,6 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
 
@@ -132,7 +137,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + ", fName=" + fName + ", lName="
+        return "User [id=" + id + ", password=" + password + ", fName=" + fName + ", lName="
                 + lName + ", email=" + email + ", userRole=" + role + "]";
     }
 
@@ -142,10 +147,31 @@ public class User implements Serializable {
         return images;
     }
 
-    @OneToMany(mappedBy="likedBy",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<Likes> members;
-    public List<Likes> getMyLikes() {
-        return members;
+    @ManyToMany(cascade=CascadeType.ALL)
+    List<ImagePosted> likes;
+
+    public List<ImagePosted> getLikedImages() {
+        return likes;
+    }
+
+    public void setLikedImages(List<ImagePosted> likes) {
+        this.likes = likes;
+    }
+
+    public void likeImage(ImagePosted b) {
+        likes.add(b);
+    }
+
+    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name="PH_ID")
+    private PhoneNumber phoneNumber;
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 

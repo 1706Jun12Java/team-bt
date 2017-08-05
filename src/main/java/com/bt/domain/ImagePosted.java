@@ -22,6 +22,7 @@ public class ImagePosted implements Serializable {
     @Column(name="CAPTION")
     private String caption;
 
+    @Lob
     @Column(name="IMAGE")
     private Blob image;
 
@@ -88,15 +89,33 @@ public class ImagePosted implements Serializable {
         return "ImagePosted [id=" + id + ", caption=" + caption + ", image=" + image + ", poster=" + poster + "]";
     }
 
-    @OneToMany(mappedBy="post",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<Likes> members;
-    public List<Likes> getPostLikes() {
-        return members;
+    @ManyToMany(cascade=CascadeType.ALL,mappedBy="images")
+    List<Tags> tags;
+
+    public List<Tags> getTags() {
+        return tags;
     }
 
-    @OneToMany(mappedBy="post",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<ImageTags> tags;
-    public List<ImageTags> getTags() {
-        return tags;
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
+    }
+
+    public void addTag(Tags b) {
+        tags.add(b);
+    }
+
+    @ManyToMany(cascade=CascadeType.ALL,mappedBy="likes")
+    List<User> likedBy;
+
+    public List<User> getUsersWhoLikedPost() {
+        return likedBy;
+    }
+
+    public void setUsersWhoLikedPost(List<User> likedBy) {
+        this.likedBy = likedBy;
+    }
+
+    public void addLikedByThisUser(User b) {
+        likedBy.add(b);
     }
 }
