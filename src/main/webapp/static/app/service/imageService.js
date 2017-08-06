@@ -18,7 +18,6 @@
                     }, function (){
                         return 'No Images';
                     });
-
             },
         };
         return imageService;

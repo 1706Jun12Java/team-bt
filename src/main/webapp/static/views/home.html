@@ -12,6 +12,22 @@
             <p>TEXT 201-554-0537 TO POST A IMAGE ANYWHERE</p>
 
             <div ng-hide="vm.haveInfo" class="loader"></div>
+            <div ng-show="vm.haveInfo">
+                <div class="row equal-height">
+                    <div class="col-sm-6 col-md-4" ng-repeat="images in vm.allImages">
+                        <div class="thumbnail">
+                            <img src="{{images.image}}" alt="">
+                            <div class="caption">
+                                <p>
+                                    {{images.caption | limitTo: 20}}
+                                    <span ng-if="images.caption.length > 20">...</span>
+                                </p>
+                                <a href="/image/{{images.id}}" class="btn btn-default">Go to Image</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
