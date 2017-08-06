@@ -27,6 +27,11 @@
                 controller: 'LoginCtrl',
                 controllerAs: 'vm'
             })
+            .when('/image/:id', {
+                templateUrl: '/static/views/image.html',
+                controller: 'ImageCtrl',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });

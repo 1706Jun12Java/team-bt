@@ -17,6 +17,7 @@
             if (vm.isAuthenticated){
                 imageService.getAllImages().then(function (response){
                     vm.allImages = response;
+                    console.log(response);
                     vm.haveInfo = true;
                 }, function (error){
                     console.log(error.data);
