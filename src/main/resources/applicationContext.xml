@@ -9,12 +9,13 @@
     <context:component-scan base-package="com.bt" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix"><value>/</value></property>
+        <property name="prefix"><value></value></property>
         <property name="suffix"><value></value></property>
     </bean>
 
     <mvc:resources mapping="/static/**" location="/static/" />
 
     <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
 
 </beans>

@@ -5,39 +5,18 @@
         .module('app')
         .controller('RegisterCtrl', RegisterCtrl);
 
-        RegisterCtrl.$inject = ['$scope', '$http', '$location', 'userService'];
+        RegisterCtrl.$inject = ['$scope', '$http', '$location', 'userService', 'toastr'];
 
-        function RegisterCtrl($scope, $http, $location, userService) {
+        function RegisterCtrl($scope, $http, $location, userService, toastr) {
             $scope.registerUser = function() {
-                        $http.post('/register', $scope.user,$scope.phoneNumber)
+                        $http.post('/api/register', $scope.user,$scope.phoneNumber)
                             .then(function(response) {
-                                console.log("sucess");
-                                console.log($scope.user);
                                 userService.setInfo(response.data);
-                                console.log(response);
                                 $location.path('/');
+                                toastr.success('Register Success');
                             }, function (error) {
-                                console.log("error");
-                                console.log(error);
-                                console.log($scope.user);
+                                toastr.error("Username is already in exist.");
                             });
             };
         }
-        // .controller('RegisterCtrl', ['$scope', '$http', '$location', 'userService', function($scope, $http, $location, userService){
-        //     $scope.registerUser = function() {
-        //         $http.post('/register', $scope.user,$scope.phoneNumber)
-        //             .then(function(response) {
-        //                 console.log("sucess");
-        //                 console.log($scope.user);
-        //                 userService.setInfo(response.data);
-        //                 console.log(response);
-        //                 $location.path('/');
-        //             }, function (error) {
-        //                 console.log("error");
-        //                 console.log(error);
-        //                 console.log($scope.user);
-        //             })
-        //
-        //     };
-        // }]);
 })();

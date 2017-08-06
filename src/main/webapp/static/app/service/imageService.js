@@ -12,7 +12,7 @@
         let vm = this;
         let imageService = {
             getAllImages: function(){
-                return $http.get('/getAllImages')
+                return $http.get('/api/getAllImages')
                     .then(function(response) {
                         return response.data;
                     }, function (){

@@ -92,3 +92,13 @@
 		object-fit: cover;
 	}
 }
+
+:not(.no-enter)#toast-container > div.ng-enter,
+:not(.no-leave)#toast-container > div.ng-leave
+{
+	transition-duration: .1s;
+}
+
+.profileFont {
+	font-weight: bold;
+}

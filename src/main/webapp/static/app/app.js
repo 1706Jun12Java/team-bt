@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngCookies'])
+        .module('app', ['ngRoute', 'ngCookies', 'toastr'])
         .config(config);
 
     function config($routeProvider, $locationProvider) {
@@ -20,6 +20,11 @@
             .when('/register', {
                 templateUrl: '/static/views/register.html',
                 controller: 'RegisterCtrl',
+                controllerAs: 'vm'
+            })
+            .when('/profile', {
+                templateUrl: '/static/views/profile.html',
+                controller: 'ProfileCtrl',
                 controllerAs: 'vm'
             })
             .when('/login', {

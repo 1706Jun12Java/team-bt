@@ -9,12 +9,13 @@
         </div>
 
         <div ng-show="vm.isAuthenticated">
+            <p>IF YOU ADDED A PHONE NUMBER TO YOUR ACCOUNT</p>
             <p>TEXT 201-554-0537 TO POST A IMAGE ANYWHERE</p>
 
             <div ng-hide="vm.haveInfo" class="loader"></div>
             <div ng-show="vm.haveInfo">
                 <div class="row equal-height">
-                    <div class="col-sm-6 col-md-4" ng-repeat="images in vm.allImages">
+                    <div class="col-sm-6 col-md-4" ng-repeat="images in vm.allImages | limitTo: vm.totalDisplay">
                         <div class="thumbnail">
                             <img src="{{images.image}}" alt="">
                             <div class="caption">
@@ -26,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    <btn ng-disabled="vm.noMoreInfo" class="row col-md-12 col-sm-12 btn btn-primary" ng-click="vm.loadMore()">Load more</btn>
                 </div>
             </div>
         </div>

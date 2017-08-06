@@ -15,7 +15,7 @@
                     $cookies.put('user', JSON.stringify(info));
                 },
                 removeInfo: function() {
-                    $http.get('/logout')
+                    $http.get('/api/logout')
                         .then(function(response) {
                             $cookies.remove('user');
                             $route.reload();
