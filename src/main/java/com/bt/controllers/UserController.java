@@ -3,7 +3,6 @@ package com.bt.controllers;
 import com.bt.dao.*;
 import com.bt.domain.*;
 import com.google.gson.Gson;
-import org.apache.http.protocol.HTTP;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,8 +14,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.StringReader;
-import java.sql.Clob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,6 +134,16 @@ public class UserController {
 
         return newList;
     }
+    @ResponseBody
+    @RequestMapping(value="/getProfile",method=RequestMethod.GET)
+    public UserBuffer getProfile(HttpServletRequest req, HttpServletResponse res){
+        HttpSession session = req.getSession();
+        UserBuffer user = null;
+        user = new UserBuffer((User) session.getAttribute("user"));
+        System.out.println(user);
+        return user;
 
+
+    }
 
 }
