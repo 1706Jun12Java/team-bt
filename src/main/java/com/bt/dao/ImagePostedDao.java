@@ -11,4 +11,5 @@ public interface ImagePostedDao {
 	    public void persistImagePosted(ImagePosted u);
 	    public boolean updateImagePosted(ImagePosted u);
 	    public ImagePosted mergeImagePosted(ImagePosted u);
+		public void postImage(String caption, String image, User user);
 }

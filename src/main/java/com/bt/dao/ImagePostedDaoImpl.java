@@ -3,6 +3,8 @@ package com.bt.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bt.domain.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +94,27 @@ public class ImagePostedDaoImpl implements ImagePostedDao {
         return mergedImagePosted;
     }
 
+    public void postImage(String caption, String image, User user){
+        Session session = hs.getSession();
+        Transaction tx = session.beginTransaction();
+        int exe=0;
+        try {
+            Query q = session.createSQLQuery("INSERT INTO BT_IMAGE (CAPTION,IMAGE,POSTED_BY) VALUES (?,?,?)");
+            q.setString(1, caption);
+            q.setString(2, image);
+            q.setInteger(3, user.getId());
+            exe=q.executeUpdate();
+            if(exe==1){
+                tx.commit();
 
+            }else {
+                tx.rollback();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            tx.rollback();
+        }
+
+
+    }
 }
