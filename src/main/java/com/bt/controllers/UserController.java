@@ -6,6 +6,7 @@ import com.bt.domain.PhoneNumber;
 import com.bt.domain.User;
 import com.bt.domain.UserRole;
 import com.google.gson.Gson;
+import org.apache.http.protocol.HTTP;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -103,12 +105,17 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/logout",method=RequestMethod.POST)
-    public ResponseEntity logout(HttpServletRequest req, HttpServletResponse res, @RequestBody String postImage){
+    @RequestMapping(value="/logout",method=RequestMethod.GET)
+    public void logout(HttpServletRequest req, HttpServletResponse res){
 
-        HttpSession session = req.getSession();
-        session.invalidate();
-        return null;
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.invalidate();
+            Cookie UIDCookie = new Cookie("JSESSIONID", "");
+            UIDCookie.setMaxAge(0);
+            UIDCookie.setPath("/");
+            res.addCookie(UIDCookie);
+        }
     }
 
 
