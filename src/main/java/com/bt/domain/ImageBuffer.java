@@ -1,5 +1,7 @@
 package com.bt.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 
 public class ImageBuffer implements Serializable {
@@ -9,13 +11,32 @@ public class ImageBuffer implements Serializable {
     private int id;
     private String caption;
     private String image;
-    private int poster;
+    private String email;
 
-    public ImageBuffer(ImagePosted ip){
-        this.id=ip.getId();
-        this.caption=ip.getCaption();
-        this.image=ip.getImage();
-        this.poster=ip.getPoster().getId();
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageBuffer{" +
+                "id=" + id +
+                ", caption='" + caption + '\'' +
+                ", image='" + image + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public ImageBuffer(int id, String caption, String image, String email) {
+
+        this.id = id;
+        this.caption = caption;
+        this.image = image;
+        this.email = email;
     }
 
     public int getId() {
@@ -42,11 +63,4 @@ public class ImageBuffer implements Serializable {
         this.image = image;
     }
 
-    public int getPoster() {
-        return poster;
-    }
-
-    public void setPoster(int poster) {
-        this.poster = poster;
-    }
 }

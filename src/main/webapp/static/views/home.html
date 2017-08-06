@@ -10,7 +10,8 @@
 
         <div ng-show="vm.isAuthenticated">
             <p>TEXT 201-554-0537 TO POST A IMAGE ANYWHERE</p>
-            <div class="loader"></div>
+
+            <div ng-hide="vm.haveInfo" class="loader"></div>
         </div>
 
     </div>

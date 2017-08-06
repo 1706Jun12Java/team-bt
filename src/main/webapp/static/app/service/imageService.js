@@ -14,12 +14,9 @@
             getAllImages: function(){
                 return $http.get('/getAllImages')
                     .then(function(response) {
-                        console.log('success');
-                        console.log(response);
-                        return response;
-                    }, function (error){
-                        console.log('error');
-                        console.log(error);
+                        return response.data;
+                    }, function (){
+                        return 'No Images';
                     });
 
             },

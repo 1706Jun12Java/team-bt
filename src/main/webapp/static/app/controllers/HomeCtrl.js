@@ -12,7 +12,16 @@
 
             vm.isAuthenticated = userService.isAuthenticated();
 
-            let allImages = imageService.getAllImages();
-            console.log(allImages)
+            vm.haveInfo = false;
+
+            if (vm.isAuthenticated){
+                imageService.getAllImages().then(function (response){
+                    console.log(response);
+                    vm.haveInfo = true;
+                }, function (error){
+                    console.log(error.data);
+                })
+            }
+
         }
 })();

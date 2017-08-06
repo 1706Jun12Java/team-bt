@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.StringReader;
 import java.sql.Clob;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -127,10 +128,11 @@ public class UserController {
 //        System.out.println(json);
 //        System.out.println("");
 
-        List<ImageBuffer> newList = null;
+        List<ImageBuffer> newList = new ArrayList<>();
         for(ImagePosted ip: lst){
-            System.out.println(ip);
-            newList.add(new ImageBuffer(ip));
+            ImageBuffer image = new ImageBuffer(ip.getId(),ip.getCaption(), ip.getImage(), ip.getPoster().getEmail());
+            System.out.println(image.toString());
+            newList.add(image);
         }
 
         return newList;
