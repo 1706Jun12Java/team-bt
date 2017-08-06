@@ -1,12 +1,7 @@
 package com.bt.controllers;
 
-import com.bt.dao.ImagePostedDao;
-import com.bt.dao.ImagePostedDaoImpl;
 import com.bt.dao.PhoneNumberDao;
 import com.bt.dao.PhoneNumberDaoImpl;
-import com.bt.domain.ImagePosted;
-import com.bt.domain.PhoneNumber;
-import com.bt.domain.User;
 import com.bt.util.TwilioUtil;
 import com.twilio.Twilio;
 import org.apache.commons.io.IOUtils;

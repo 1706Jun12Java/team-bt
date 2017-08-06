@@ -3,22 +3,21 @@
 
     angular
         .module('app')
-        .controller('navCtrl', navCtrl);
+        .controller('NavCtrl', NavCtrl);
 
-    navCtrl.$inject = ['$scope', '$location', '$route', 'userService', '$http'];
+        NavCtrl.$inject = ['$scope', '$location', '$route', 'userService', '$http'];
 
-    function navCtrl($scope, $location, $route, userService, $http) {
-        var vm = this;
-        vm.isAuthenticated = userService.isAuthenticated();
-        vm.logout = function() {
-            userService.removeInfo();
-            $location.path('/');
-            $route.reload();
-        };
+        function NavCtrl($scope, $location, $route, userService, $http) {
+            let vm = this;
+            vm.isAuthenticated = userService.isAuthenticated();
+            vm.logout = function() {
+                userService.removeInfo();
+                $route.reload();
+            };
 
-        vm.home = function() {
-            $location.path('/');
-            $route.reload();
+            vm.home = function() {
+                $location.path('/');
+                $route.reload();
+            }
         }
-    }
 })();

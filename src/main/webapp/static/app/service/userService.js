@@ -3,28 +3,34 @@
 
     angular
         .module('app')
-        .factory('userService', ['$cookies', '$http', '$route',function userService ($cookies, $http, $route) {
-                var userService = {
-                    setInfo: function(info) {
-                        $cookies.put('user', JSON.stringify(info));
-                        console.log("user cookie: : ", $cookies.get('user'));
-                    },
-                    removeInfo: function() {
-                        $http.get('/logout')
-                            .then(function(response) {
-                                $cookies.remove('user');
-                                $route.reload();
-                                $location.path('/');
-                            }, function (error) {
-                                console.log(error);
-                            })
-                    },
-                    isAuthenticated: function() {
-                        if ($cookies.get('user'))
-                            return true;
-                        return false;
-                    }
-                };
-                return userService;
-        }])
+        .factory('userService', userService);
+
+        userService.$inject = ['$cookies', '$http', '$route', '$location'];
+
+
+        function userService($cookies, $http, $route, $location){
+            let vm = this;
+            let userService = {
+                setInfo: function(info) {
+                    $cookies.put('user', JSON.stringify(info));
+                },
+                removeInfo: function() {
+                    $http.get('/logout')
+                        .then(function(response) {
+                            $cookies.remove('user');
+                            $route.reload();
+                            $location.path('/');
+                        }, function (error) {
+                            console.log(error);
+                        })
+                },
+                isAuthenticated: function() {
+                    if ($cookies.get('user'))
+                        return true;
+                    return false;
+                }
+            };
+            return userService;
+        }
+
 })();

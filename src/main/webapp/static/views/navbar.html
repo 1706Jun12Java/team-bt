@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" ng-controller="navCtrl as vm">
+<nav class="navbar navbar-default" ng-controller="NavCtrl as vm">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-hide="vm.isAuthenticated"><a href="/login">Login</a></li>
+                    <li ng-hide="vm.isAuthenticated"><a href="/register">Register</a></li>
                     <li ng-show="vm.isAuthenticated"><a href="/profile">Profile</a></li>
                     <li ng-show="vm.isAuthenticated"><a href="/postImage">Post</a></li>
-                    <li ng-hide="vm.isAuthenticated"><a href="/register">Register</a></li>
-                    <li ng-hide="vm.isAuthenticated"><a href="/login">Login</a></li>
                     <li ng-show="vm.isAuthenticated"><a href="" ng-click="vm.logout()">Logout</a></li>
                 </ul>
             </ul>
