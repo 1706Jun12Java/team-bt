@@ -13,6 +13,16 @@
             vm.isAuthenticated = userService.isAuthenticated();
 
             vm.haveInfo = false;
+            vm.noMoreInfo = false;
+            vm.totalDisplay = 6;
+
+            vm.noMoreInfo = vm.haveInfo.length < vm.totalDisplay ? false : true;
+
+            vm.loadMore = function () {
+                if (vm.allImages.length < vm.totalDisplay + 6)
+                    vm.noMoreInfo = true;
+                vm.totalDisplay += 6;
+            };
 
             if (vm.isAuthenticated){
                 imageService.getAllImages().then(function (response){

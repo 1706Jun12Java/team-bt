@@ -61,16 +61,6 @@ public class TwilioController {
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         PhoneNumberDao phDao = (PhoneNumberDaoImpl) ac.getBean("phoneNumberDaoImpl");
         phDao.postImageFromNumber(phoneNumber,base64);
-//        User user = ph.getUser();
-//        System.out.println(user.toString());
-//        if(user!=null){
-//            ImagePosted img = new ImagePosted();
-//            img.setCaption("Posted from Twilio");
-//            img.setImage(base64);
-//            img.setPoster(user);
-//            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
-//            iDao.persistImagePosted(img);
-//        }
     }
 
 

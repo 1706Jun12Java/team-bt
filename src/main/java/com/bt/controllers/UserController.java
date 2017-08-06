@@ -19,6 +19,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping(value="/api")
 public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -105,13 +106,13 @@ public class UserController {
     public void logout(HttpServletRequest req, HttpServletResponse res){
 
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null)
             session.invalidate();
-            Cookie UIDCookie = new Cookie("JSESSIONID", "");
-            UIDCookie.setMaxAge(0);
-            UIDCookie.setPath("/");
-            res.addCookie(UIDCookie);
-        }
+
+        Cookie UIDCookie = new Cookie("JSESSIONID", "");
+        UIDCookie.setMaxAge(0);
+        UIDCookie.setPath("/");
+        res.addCookie(UIDCookie);
     }
 
     @ResponseBody

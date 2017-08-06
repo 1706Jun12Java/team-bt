@@ -1,24 +1,29 @@
 <navbar></navbar>
 
 <div class="col-md-6 col-md-offset-3">
-    <div class="form-group">
-        <label>Username</label>
-        <input class="form-control input-lg" value="{{info.email}}" type="text" tabindex="4" readonly style="background-color:white;" >
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <span class="profileFont">Username:</span> {{info.email}}
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>First Name</label>
-        <input class="form-control input-lg" value="{{info.fName}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <span class="profileFont">First Name:</span> {{info.fName}}
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Last Name</label>
-        <input class="form-control input-lg" value="{{info.lName}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <span class="profileFont">Last Name:</span> {{info.lName}}
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Phone Number</label>
-        <input class="form-control input-lg" value="{{info.phoneNumber}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <span class="profileFont">Phone Number:</span> {{info.phoneNumber}}
+        </div>
     </div>
 
     <form>
@@ -26,7 +31,7 @@
             <label for="inputPN">Change Phone Number</label>
             <input class="form-control input-lg" placeholder="0001112222" type="text" id="inputPN" tabindex="4" ng-model="phoneNumber.phoneNumber">
         </div>
-        <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
             <button class="btn btn-primary btn-block btn-lg" ng-click="changeNum()">Change</button>
         </div>
     </form>

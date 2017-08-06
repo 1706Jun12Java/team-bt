@@ -1,14 +1,15 @@
 <navbar></navbar>
 <div class="col-md-6 col-md-offset-3">
-    <div class="form-group">
-        <label>Posted by:</label>
-        <input class="form-control input-lg" value="{{imgdata.email}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="profileFont">Posted by:</span> {{imgdata.email}}
+        </div>
+        <div class="panel-body">
+            <span class="profileFont">Caption:</span> {{imgdata.caption}}
+        </div>
     </div>
-    <div class="form-group">
-        <label>Caption</label>
-        <input class="form-control input-lg" value="{{imgdata.caption}}" type="text" tabindex="4" readonly style="background-color:white;" >
-    </div>
-    <div>
+
+    <div class="thumbnail">
         <img src="{{imgdata.image}}" alt="" class="img-responsive center-block" />
     </div>
 </div>
