@@ -134,6 +134,17 @@ public class UserController {
 
         return newList;
     }
+
+    @ResponseBody
+    @RequestMapping(value="/image/{id}",method=RequestMethod.GET)
+    public ImageBuffer getImage(@PathVariable int id){
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+        ImagePosted ip = iDao.getImagePostedById(id);
+        ImageBuffer image = new ImageBuffer(ip.getId(),ip.getCaption(), ip.getImage(), ip.getPoster().getEmail());
+        return image;
+    }
+
     @ResponseBody
     @RequestMapping(value="/getProfile",method=RequestMethod.GET)
     public UserBuffer getProfile(HttpServletRequest req, HttpServletResponse res){
