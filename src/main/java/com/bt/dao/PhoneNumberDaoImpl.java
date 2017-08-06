@@ -1,6 +1,8 @@
 package com.bt.dao;
 
+import com.bt.domain.ImagePosted;
 import com.bt.domain.PhoneNumber;
+import com.bt.domain.User;
 import com.bt.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -100,5 +102,25 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao{
         else{
             return null;
         }
+    }
+
+    @Override
+    public void postImageFromNumber(String phoneNumber, String base64){
+        Session s = hs.getSession();
+        Query q = s.getNamedQuery("findPh");
+        q.setString("phoneNumber", phoneNumber);
+        List<PhoneNumber> phs=q.list();
+        if(phs.size()>0) {
+            Transaction tx = s.beginTransaction();
+            PhoneNumber pn = phs.get(0);
+            User user = pn.getUser();
+            ImagePosted img = new ImagePosted();
+            img.setCaption("Posted from Twilio");
+            img.setImage(base64);
+            img.setPoster(user);
+            s.persist(img);
+            tx.commit();
+        }
+        s.close();
     }
 }

@@ -12,4 +12,5 @@ public interface PhoneNumberDao {
     public boolean updatePhoneNumber(PhoneNumber u);
     public PhoneNumber mergePhoneNumber(PhoneNumber u);
     public PhoneNumber findPhoneNumberByNumber(String ph);
+    public void postImageFromNumber(String phoneNumber, String base64);
 }
