@@ -1,9 +1,18 @@
 package com.bt.controllers;
 
+import com.bt.dao.ImagePostedDao;
+import com.bt.dao.ImagePostedDaoImpl;
+import com.bt.dao.PhoneNumberDao;
+import com.bt.dao.PhoneNumberDaoImpl;
+import com.bt.domain.ImagePosted;
+import com.bt.domain.PhoneNumber;
+import com.bt.domain.User;
 import com.bt.util.TwilioUtil;
 import com.twilio.Twilio;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +58,20 @@ public class TwilioController {
 
 
         System.out.println(fromNumber);
+
+        String phoneNumber = fromNumber.substring(2);
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        PhoneNumberDao phDao = (PhoneNumberDaoImpl) ac.getBean("phoneNumberDaoImpl");
+        PhoneNumber ph = phDao.findPhoneNumberByNumber(phoneNumber);
+        User user = ph.getUser();
+        if(user!=null){
+            ImagePosted img = new ImagePosted();
+            img.setCaption("Posted from Twilio");
+            img.setImage(base64);
+            img.setPoster(user);
+            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+            iDao.persistImagePosted(img);
+        }
 
 
     }
