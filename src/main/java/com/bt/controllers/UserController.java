@@ -87,18 +87,18 @@ public class UserController {
 //        ImagePosted newImage = new ImagePosted();
 //        newImage.setCaption(caption);
 //
-//        logger.info(newImage.toString());
-//
-//        HttpSession session = req.getSession();
-//        User user = (User) session.getAttribute("user");
-//        if(user!=null) {
-//            newImage.setPoster(user);
-//            ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-//            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
-//
-//            iDao.persistImagePosted(newImage);
-//            return new ResponseEntity(gson.toJson(user.getEmail()), HttpStatus.OK);
-//        }
+        logger.info(newImage.toString());
+
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user!=null) {
+            newImage.setPoster(user);
+            ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+
+            iDao.persistImagePosted(newImage);
+            return new ResponseEntity(gson.toJson(user.getEmail()), HttpStatus.OK);
+        }
         return null;
     }
 
