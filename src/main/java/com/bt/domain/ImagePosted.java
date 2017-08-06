@@ -24,19 +24,27 @@ public class ImagePosted implements Serializable {
 
     @Lob
     @Column(name="IMAGE")
-    private Clob image;
+    private String image;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="POSTED_BY", foreignKey = @ForeignKey(name = "FK_POSTED_BY"))
     private User poster;
 
 
-    public ImagePosted() {
-        // TODO Auto-generated constructor stub
+    public ImagePosted() {}
+
+    public ImagePosted(String image) {
+        super();
+        this.image = image;
     }
 
+    public ImagePosted(String caption, String image) {
+        super();
+        this.caption = caption;
+        this.image = image;
+    }
 
-    public ImagePosted(String caption, Clob image, User poster) {
+    public ImagePosted(String caption, String image, User poster) {
         super();
         this.caption = caption;
         this.image = image;
@@ -64,12 +72,12 @@ public class ImagePosted implements Serializable {
     }
 
 
-    public Clob getImage() {
+    public String getImage() {
         return image;
     }
 
 
-    public void setImage(Clob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

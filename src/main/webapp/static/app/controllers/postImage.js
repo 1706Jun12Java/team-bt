@@ -9,9 +9,12 @@
                 var file    = document.querySelector('input[type=file]').files[0];
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
+
+
                 reader.onloadend = function(){
-                    console.log(reader.result);
-                    $http.post('/postImage', reader.result)
+                    $scope.postImage.image = reader.result;
+                    // console.log(reader.result);
+                    $http.post('/postImage', $scope.postImage)
                         .then(function(response) {
                             console.log("sucess");
                             console.log($scope.postImage);
