@@ -41,39 +41,42 @@ public class TwilioController {
 
         String base64 = null;
 
-        if (imageUrl != null){
-            try {
+        System.out.println(fromNumber);
 
-                URLConnection conn = new URL(imageUrl).openConnection();
+
+        if (imageUrl != null){
+            URLConnection conn;
+            try {
+                conn = new URL(imageUrl).openConnection();
+
                 conn.setRequestProperty("User-Agent", "Mozilla/5.0");
                 byte[] imageBytes = IOUtils.toByteArray(conn);
                 base64 = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
-
             } catch (IOException e) {
                 System.out.println("image not found" + e);
             }
         }
 
         System.out.println(base64);
+        postImages(fromNumber, base64);
+    }
 
-
-        System.out.println(fromNumber);
-
+    public void postImages(String fromNumber, String base64){
         String phoneNumber = fromNumber.substring(2);
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         PhoneNumberDao phDao = (PhoneNumberDaoImpl) ac.getBean("phoneNumberDaoImpl");
         PhoneNumber ph = phDao.findPhoneNumberByNumber(phoneNumber);
         User user = ph.getUser();
-        if(user!=null){
-            ImagePosted img = new ImagePosted();
-            img.setCaption("Posted from Twilio");
-            img.setImage(base64);
-            img.setPoster(user);
-            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
-            iDao.persistImagePosted(img);
-        }
-
-
+        System.out.println(user.toString());
+//        if(user!=null){
+//            ImagePosted img = new ImagePosted();
+//            img.setCaption("Posted from Twilio");
+//            img.setImage(base64);
+//            img.setPoster(user);
+//            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+//            iDao.persistImagePosted(img);
+//        }
     }
+
 
 }
