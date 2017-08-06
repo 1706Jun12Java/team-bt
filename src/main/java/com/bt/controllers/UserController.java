@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.StringReader;
+import java.sql.Clob;
 
 
 @RestController
@@ -79,24 +80,25 @@ public class UserController {
     public ResponseEntity postImage(HttpServletRequest req, HttpServletResponse res, @RequestBody String postImage){
         Gson gson = new Gson();
 
-        String caption = (String) req.getAttribute("inputCaption");
+//
+        ImagePosted newImage = gson.fromJson(postImage, ImagePosted.class);
 
-        //ImagePosted newImage = gson.fromJson(postImage, ImagePosted.class);
-        ImagePosted newImage = new ImagePosted();
-        newImage.setCaption(caption);
-
-        logger.info(newImage.toString());
-
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        if(user!=null) {
-            newImage.setPoster(user);
-            ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
-
-            iDao.persistImagePosted(newImage);
-            return new ResponseEntity(gson.toJson(user.getEmail()), HttpStatus.OK);
-        }
+        System.out.println(newImage.toString());
+//        ImagePosted newImage = new ImagePosted();
+//        newImage.setCaption(caption);
+//
+//        logger.info(newImage.toString());
+//
+//        HttpSession session = req.getSession();
+//        User user = (User) session.getAttribute("user");
+//        if(user!=null) {
+//            newImage.setPoster(user);
+//            ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+//            ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+//
+//            iDao.persistImagePosted(newImage);
+//            return new ResponseEntity(gson.toJson(user.getEmail()), HttpStatus.OK);
+//        }
         return null;
     }
 
