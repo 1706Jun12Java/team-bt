@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>team bt</title>
+
+    <link rel="stylesheet" href="static/css/style.css" />
+
+    <!-- ANGULAR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.js"></script>
+
+    <!-- JQUERY + BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+
+
+    <base href="/" />
+</head>
+
+<body>
+
+    <div ng-view></div>
+
+
+    <!-- MAIN SCRIPT -->
+    <script src="static/app/app.js"></script>
+
+    <!-- CONTROLLERS -->
+    <script src="static/app/controllers/HomeCtrl.js"></script>
+    <script src="static/app/controllers/PostImageCtrl.js"></script>
+    <script src="static/app/controllers/RegisterCtrl.js"></script>
+    <script src="static/app/controllers/LoginCtrl.js"></script>
+    <script src="static/app/controllers/NavCtrl.js"></script>
+
+    <!-- DIRECTIVES -->
+    <script src="static/app/directives/navBarDirective.js"></script>
+
+    <!-- SERVICES -->
+    <script src="static/app/service/userService.js"></script>
+
+
+
+</body>
+
+</html>
