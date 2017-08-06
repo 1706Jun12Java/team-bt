@@ -150,11 +150,43 @@ public class UserController {
     public UserBuffer getProfile(HttpServletRequest req, HttpServletResponse res){
         HttpSession session = req.getSession();
         UserBuffer user = null;
-        user = new UserBuffer((User) session.getAttribute("user"));
+        User temp = (User) session.getAttribute("user");
+        user = new UserBuffer(temp);
         System.out.println(user);
         return user;
 
 
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value="/changeNum",method=RequestMethod.POST)
+    public ResponseEntity changeNumber(HttpServletRequest req, HttpServletResponse res, @RequestBody String number){
+        Gson gson = new Gson();
+        HttpSession session = req.getSession();
+        PhoneNumber pn = gson.fromJson(number, PhoneNumber.class);
+
+        System.out.println("CHNAGE PHONE NUMNER");System.out.println("CHNAGE PHONE NUMNER");System.out.println("CHNAGE PHONE NUMNER");System.out.println("CHNAGE PHONE NUMNER");System.out.println("CHNAGE PHONE NUMNER");
+        System.out.println(number);
+//        logger.info(pn.toString());
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        User temp1 = (User) session.getAttribute("user");
+
+        UserDao userDao = (UserDaoImpl) ac.getBean("userDaoImpl");
+        User user = userDao.getUserById(temp1.getId());
+
+
+
+        PhoneNumberDao pnDao = (PhoneNumberDaoImpl) ac.getBean("phoneNumberDaoImpl");
+        PhoneNumber x = user.getPhoneNumber();
+        System.out.println(x);
+
+            pn.setUser(temp1);
+            pnDao.persistPhoneNumber(pn);
+
+
+
+        return new ResponseEntity(gson.toJson(temp1.getEmail()), HttpStatus.OK);
     }
 
 }

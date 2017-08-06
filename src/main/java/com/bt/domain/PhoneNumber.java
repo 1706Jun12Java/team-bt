@@ -3,7 +3,8 @@ package com.bt.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@NamedQueries({ @NamedQuery(name = "findPh", query = "from PhoneNumber where phoneNumber = :phoneNumber") })
+@NamedQueries({ @NamedQuery(name = "findPh", query = "from PhoneNumber where phoneNumber = :phoneNumber"),
+        @NamedQuery(name = "findPhByUser", query = "from PhoneNumber where user = :user")})
 @Entity
 @Table(name="BT_PHONE_NUMBER")
 public class PhoneNumber implements Serializable {

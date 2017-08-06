@@ -1,5 +1,33 @@
 <navbar></navbar>
 
-<div class="container" >
+<div class="col-md-6 col-md-offset-3">
+    <div class="form-group">
+        <label>Username</label>
+        <input class="form-control input-lg" placeholder="{{info.email}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    </div>
 
+    <div class="form-group">
+        <label>First Name</label>
+        <input class="form-control input-lg" placeholder="{{info.fName}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    </div>
+
+    <div class="form-group">
+        <label>Last Name</label>
+        <input class="form-control input-lg" placeholder="{{info.lName}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input class="form-control input-lg" placeholder="{{info.phoneNumber}}" type="text" tabindex="4" readonly style="background-color:white;" >
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="inputPN">Change Phone Number</label>
+            <input class="form-control input-lg" placeholder="0001112222" type="text" id="inputPN" tabindex="4" ng-model="phoneNumber.phoneNumber">
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <button class="btn btn-primary btn-block btn-lg" ng-click="changeNum()">Change</button>
+        </div>
+    </form>
 </div>

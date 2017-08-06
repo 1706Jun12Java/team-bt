@@ -57,6 +57,14 @@ public class PhoneNumberDaoImpl implements PhoneNumberDao{
     public void persistPhoneNumber(PhoneNumber u) {
         Session s = hs.getSession();
         Transaction tx = s.beginTransaction();
+        Query q = s.getNamedQuery("findPhByUser");
+        q.setInteger("user", u.getUser().getId());
+        List<PhoneNumber> phs=q.list();
+        for(PhoneNumber ph: phs){
+            s.delete(ph);
+        }
+
+
         s.persist(u);
         tx.commit();
         s.close();
