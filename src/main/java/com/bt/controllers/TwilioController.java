@@ -38,7 +38,7 @@ public class TwilioController {
                 URLConnection conn = new URL(imageUrl).openConnection();
                 conn.setRequestProperty("User-Agent", "Mozilla/5.0");
                 byte[] imageBytes = IOUtils.toByteArray(conn);
-                base64 = Base64.getEncoder().encodeToString(imageBytes);
+                base64 = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
 
             } catch (IOException e) {
                 System.out.println("image not found" + e);
