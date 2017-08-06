@@ -1,5 +1,6 @@
 package com.bt.domain;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Clob;
@@ -114,7 +115,7 @@ public class ImagePosted implements Serializable {
         tags.add(b);
     }
 
-    @ManyToMany(cascade=CascadeType.ALL,mappedBy="likes")
+    @ManyToMany(cascade=CascadeType.ALL,mappedBy="likes",fetch=FetchType.EAGER)
     List<User> likedBy;
 
     public List<User> getUsersWhoLikedPost() {

@@ -1,10 +1,7 @@
 package com.bt.controllers;
 
 import com.bt.dao.*;
-import com.bt.domain.ImagePosted;
-import com.bt.domain.PhoneNumber;
-import com.bt.domain.User;
-import com.bt.domain.UserRole;
+import com.bt.domain.*;
 import com.google.gson.Gson;
 import org.apache.http.protocol.HTTP;
 import org.apache.log4j.Logger;
@@ -121,10 +118,22 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value="/getAllImages",method=RequestMethod.GET)
-    public List<ImagePosted> getAllImages(HttpServletRequest req, HttpServletResponse res){
+    public List<ImageBuffer> getAllImages(HttpServletRequest req, HttpServletResponse res){
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
-        return iDao.getImagesPosted();
+        List<ImagePosted> lst = iDao.getImagesPosted();
+//        String json = new Gson().toJson(lst);
+//        System.out.println("");
+//        System.out.println(json);
+//        System.out.println("");
+
+        List<ImageBuffer> newList = null;
+        for(ImagePosted ip: lst){
+            System.out.println(ip);
+            newList.add(new ImageBuffer(ip));
+        }
+
+        return newList;
     }
 
 

@@ -34,6 +34,7 @@ public class User implements Serializable {
     @Column(name="EMAIL", unique = true)
     private String email;
 
+
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="USER_ROLE", foreignKey = @ForeignKey(name = "FK_BT_USER_ROLES"))
     private UserRole role;
