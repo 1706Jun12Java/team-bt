@@ -22,6 +22,11 @@
                 controller: 'RegisterCtrl',
                 controllerAs: 'vm'
             })
+            .when('/profile', {
+                templateUrl: '/static/views/profile.html',
+                controller: 'ProfileCtrl',
+                controllerAs: 'vm'
+            })
             .when('/login', {
                 templateUrl: '/static/views/login.html',
                 controller: 'LoginCtrl',
