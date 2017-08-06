@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.StringReader;
 import java.sql.Clob;
+import java.util.List;
 
 
 @RestController
@@ -116,6 +117,14 @@ public class UserController {
             UIDCookie.setPath("/");
             res.addCookie(UIDCookie);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/getAllImages",method=RequestMethod.GET)
+    public List<ImagePosted> getAllImages(HttpServletRequest req, HttpServletResponse res){
+        ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        ImagePostedDao iDao = (ImagePostedDaoImpl) ac.getBean("imagePostedDaoImpl");
+        return iDao.getImagesPosted();
     }
 
 
