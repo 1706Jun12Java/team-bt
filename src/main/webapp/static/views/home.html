@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <btn ng-disabled="vm.noMoreInfo" class="row col-md-12 col-sm-12 btn btn-primary" ng-click="vm.loadMore()">Load more</btn>
+                    <btn ng-disabled="vm.noMoreInfo" class="row col-md-12 col-sm-12 btn btn-primary" ng-click="vm.noMoreInfo ||vm.loadMore()">Load more</btn>
                 </div>
             </div>
         </div>
