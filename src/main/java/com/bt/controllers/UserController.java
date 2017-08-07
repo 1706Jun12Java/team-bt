@@ -150,13 +150,11 @@ public class UserController {
     @RequestMapping(value="/getProfile",method=RequestMethod.GET)
     public UserBuffer getProfile(HttpServletRequest req, HttpServletResponse res){
         HttpSession session = req.getSession();
-        UserBuffer user = null;
         User temp = (User) session.getAttribute("user");
-        user = new UserBuffer(temp);
-        System.out.println(user);
+        UserBuffer user = new UserBuffer(temp);
+        System.out.println(temp.toString());
+        System.out.println(temp.toString());
         return user;
-
-
     }
 
 
@@ -180,12 +178,12 @@ public class UserController {
 
         PhoneNumberDao pnDao = (PhoneNumberDaoImpl) ac.getBean("phoneNumberDaoImpl");
         PhoneNumber x = user.getPhoneNumber();
-        System.out.println(x);
 
-            pn.setUser(temp1);
-            pnDao.persistPhoneNumber(pn);
+        pn.setUser(temp1);
+        pnDao.persistPhoneNumber(pn);
+        user = userDao.getUserById(temp1.getId());
 
-
+        session.setAttribute("user", user);
 
         return new ResponseEntity(gson.toJson(temp1.getEmail()), HttpStatus.OK);
     }
