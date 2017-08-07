@@ -26,7 +26,9 @@
             if (vm.isAuthenticated){
                 imageService.getAllImages().then(function (response){
                     vm.allImages = response;
-                    vm.allImages.reverse();
+                    vm.allImages.sort(function(a, b) {
+                        return b.id - a.id;
+                    });
                     vm.haveInfo = true;
                     vm.noMoreInfo = vm.allImages.length > vm.totalDisplay ? false : true;
                 }, function (error){
