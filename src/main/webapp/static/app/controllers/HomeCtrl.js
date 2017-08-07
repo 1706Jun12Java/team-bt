@@ -16,18 +16,19 @@
             vm.noMoreInfo = false;
             vm.totalDisplay = 6;
 
-            vm.noMoreInfo = vm.haveInfo.length < vm.totalDisplay ? false : true;
-
             vm.loadMore = function () {
                 if (vm.allImages.length < vm.totalDisplay + 6)
                     vm.noMoreInfo = true;
                 vm.totalDisplay += 6;
+                console.log(vm.totalDisplay);
             };
 
             if (vm.isAuthenticated){
                 imageService.getAllImages().then(function (response){
                     vm.allImages = response;
+                    vm.allImages.reverse();
                     vm.haveInfo = true;
+                    vm.noMoreInfo = vm.allImages.length > vm.totalDisplay ? false : true;
                 }, function (error){
                     console.log(error.data);
                 })
