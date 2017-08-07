@@ -5,10 +5,10 @@
         .module('app')
         .factory('userService', userService);
 
-        userService.$inject = ['$cookies', '$http', '$route', '$location'];
+        userService.$inject = ['$cookies', '$http', '$route', '$location', 'toastr'];
 
 
-        function userService($cookies, $http, $route, $location){
+        function userService($cookies, $http, $route, $location, toastr){
             let vm = this;
             let userService = {
                 setInfo: function(info) {
@@ -20,6 +20,7 @@
                             $cookies.remove('user');
                             $route.reload();
                             $location.path('/');
+                            toastr.info('Logout Success');
                         }, function (error) {
                             console.log(error);
                         })

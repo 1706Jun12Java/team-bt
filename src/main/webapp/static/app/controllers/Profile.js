@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProfileCtrl', ProfileCtrl);
 
-    ProfileCtrl.$inject = ['$scope', '$http', '$location', 'userService','$route'];
+    ProfileCtrl.$inject = ['$scope', '$http', '$location', 'userService','$route', 'toastr'];
 
-    function ProfileCtrl($scope, $http, $location, userService,$route) {
+    function ProfileCtrl($scope, $http, $location, userService,$route, toastr) {
             let vm = this;
 
             $http.get('/api/getProfile')
@@ -22,8 +22,9 @@
                     .then(function(response) {
                         userService.setInfo(response.data);
                         $route.reload();
+                        toastr.success('Phone change success');
                     }, function (error) {
-                        console.log("error");
+                        toastr.error('Phone change unsuccessful');
                     });
             };
     }

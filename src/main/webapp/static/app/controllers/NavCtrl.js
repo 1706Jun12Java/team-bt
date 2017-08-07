@@ -5,14 +5,13 @@
         .module('app')
         .controller('NavCtrl', NavCtrl);
 
-        NavCtrl.$inject = ['$scope', '$location', '$route', 'userService', '$http'];
+        NavCtrl.$inject = ['$location', '$route', 'userService'];
 
-        function NavCtrl($scope, $location, $route, userService, $http) {
+        function NavCtrl($location, $route, userService) {
             let vm = this;
             vm.isAuthenticated = userService.isAuthenticated();
             vm.logout = function() {
                 userService.removeInfo();
-                $route.reload();
             };
 
             vm.home = function() {
